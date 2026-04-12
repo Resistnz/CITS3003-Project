@@ -74,11 +74,17 @@ function(configure_lab_target TARGET_NAME)
 
     if (WIN32)
         # Due to symbolic links requiring higher privileges on Windows, manually create Junctions instead
-        file(TO_NATIVE_PATH "${CMAKE_BINARY_DIR}/res" _dstResDir)
-        file(TO_NATIVE_PATH "${CMAKE_SOURCE_DIR}/res" _srcResDir)
+        string(REPLACE "/" "\\" _dstResDir "${CMAKE_BINARY_DIR}/res")
+        string(REPLACE "/" "\\" _srcResDir "${CMAKE_SOURCE_DIR}/res")
 
-        file(TO_NATIVE_PATH "${CMAKE_BINARY_DIR}/config" _dstConfigDir)
-        file(TO_NATIVE_PATH "${CMAKE_SOURCE_DIR}/config" _srcConfigDir)
+        string(REPLACE "/" "\\" _dstConfigDir "${CMAKE_BINARY_DIR}/config")
+        string(REPLACE "/" "\\" _srcConfigDir "${CMAKE_SOURCE_DIR}/config")
+
+        # file(TO_NATIVE_PATH "${CMAKE_BINARY_DIR}/res" _dstResDir)
+        # file(TO_NATIVE_PATH "${CMAKE_SOURCE_DIR}/res" _srcResDir)
+
+        # file(TO_NATIVE_PATH "${CMAKE_BINARY_DIR}/config" _dstConfigDir)
+        # file(TO_NATIVE_PATH "${CMAKE_SOURCE_DIR}/config" _srcConfigDir)
 
         # Link the res and config dirs into where the build puts the exe
         add_custom_command(TARGET ${TARGET_NAME}
