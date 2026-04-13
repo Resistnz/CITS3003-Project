@@ -20,6 +20,7 @@ struct LightCalculatioData {
 struct PointLightData {
     vec3 position;
     vec3 colour;
+    float attenuation;
 };
 
 // Calculations
@@ -29,6 +30,8 @@ const float ambient_factor = 0.002f;
 // Point Lights
 void point_light_calculation(PointLightData point_light, LightCalculatioData calculation_data, float shininess, inout vec3 total_diffuse, inout vec3 total_specular, inout vec3 total_ambient) {
     vec3 ws_light_offset = point_light.position - calculation_data.ws_frag_position;
+
+    float distance = length(ws_light_offset); // Distance magnitude for falloff
 
     // Ambient
     vec3 ambient_component = ambient_factor * point_light.colour;
@@ -43,9 +46,16 @@ void point_light_calculation(PointLightData point_light, LightCalculatioData cal
     float specular_factor = pow(max(dot(calculation_data.ws_normal, ws_halfway_dir), 0.0f), shininess);
     vec3 specular_component = specular_factor * point_light.colour;
 
-    total_diffuse += diffuse_component;
-    total_specular += specular_component;
-    total_ambient += ambient_component;
+    // Calculate the falloff based on distance and attenuation, following the data and approach provided in the openGL tutorial https://learnopengl.com/Lighting/Light-casters#Attenuation
+    float linear_multiplier = 4.5/point_light.attenuation; // Linear attenuation factor
+    float quadratic_multiplier = 75.0/(point_light.attenuation * point_light.attenuation); // Quadratic attenuation factor 
+
+    float falloff = 1.0f / (1.0f + linear_multiplier * distance + quadratic_multiplier * distance * distance); 
+
+    // Consider the falloff for each point light and accumulate
+    total_diffuse += diffuse_component * falloff; 
+    total_specular += specular_component * falloff;
+    total_ambient += ambient_component * falloff; 
 }
 
 // Total Calculation
