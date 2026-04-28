@@ -35,7 +35,9 @@ layout (std140) uniform PointLightArray {
 
 void main() {
     vec3 ws_view_dir = normalize(ws_view_position - frag_in.ws_position);
-    LightCalculatioData light_calculation_data = LightCalculatioData(frag_in.ws_position, ws_view_dir, frag_in.ws_normal);
+    vec3 ws_normal = normalize(frag_in.ws_normal); // Ensure the normal is normalized, as it was was previously lost when interpolated
+    
+    LightCalculatioData light_calculation_data = LightCalculatioData(frag_in.ws_position, ws_view_dir, ws_normal);
     Material material = Material(diffuse_tint, specular_tint, ambient_tint, shininess);
 
     LightingResult lighting_result = total_light_calculation(light_calculation_data, material
