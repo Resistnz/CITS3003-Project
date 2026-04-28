@@ -62,6 +62,7 @@ json EditorScene::EmissiveEntityElement::into_json() const {
 
 
 void EditorScene::EmissiveEntityElement::add_imgui_edit_section(MasterRenderScene& render_scene, const SceneContext& scene_context) {
+    bool transformUpdated = false;
     ImGui::Text("EmissiveEntity");
     SceneElement::add_imgui_edit_section(render_scene, scene_context);
 
@@ -72,7 +73,13 @@ void EditorScene::EmissiveEntityElement::add_imgui_edit_section(MasterRenderScen
     scene_context.model_loader.add_imgui_model_selector("Model Selection", rendered_entity->model);
     scene_context.texture_loader.add_imgui_texture_selector("Emission Texture", rendered_entity->render_data.emission_texture);
     ImGui::Spacing();
+    transformUpdated |= ImGui::ColorEdit3("Emission Tint", &material.emission_tint[0]);
+
+    if (transformUpdated) {
+        update_instance_data();
+    }
 }
+
 
 void EditorScene::EmissiveEntityElement::update_instance_data() {
     transform = calc_model_matrix();
