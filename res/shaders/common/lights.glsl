@@ -45,13 +45,14 @@ void point_light_calculation(PointLightData point_light, LightCalculatioData cal
     vec3 ws_halfway_dir = normalize(ws_light_dir + calculation_data.ws_view_dir);
     float specular_factor = pow(max(dot(calculation_data.ws_normal, ws_halfway_dir), 0.0f), shininess);
     vec3 specular_component = specular_factor * point_light.colour;
+    point_light.attenuation = 30.0f * point_light.attenuation; // Scale the attenuation for better visual results, as the default values are too low
 
     // Calculate the falloff based on distance and attenuation, following the data and approach provided in the openGL tutorial https://learnopengl.com/Lighting/Light-casters#Attenuation
     float linear_multiplier = 4.5/point_light.attenuation; // Linear attenuation factor
     float quadratic_multiplier = 75.0/(point_light.attenuation * point_light.attenuation); // Quadratic attenuation factor 
 
     float falloff = 1.0f / (1.0f + linear_multiplier * distance + quadratic_multiplier * distance * distance); 
-
+    //falloff = 1.0f / distance; // Alternative linear falloff for testing
     // Consider the falloff for each point light and accumulate
     total_diffuse += diffuse_component * falloff; 
     total_specular += specular_component * falloff;
