@@ -5,10 +5,10 @@
 
 /// A concrete implementation of CameraInterface, that is a camera with basic panning like controls.
 class PanningCamera : public CameraInterface {
-    float init_distance = 1.0f;
+    float init_distance = 8.0f;
     glm::vec3 init_focus_point = {0.0f, 0.0f, 0.0f};
-    float init_pitch = 0.0f;
-    float init_yaw = 0.0f;
+    float init_pitch = 45.0f;
+    float init_yaw = 315.0f;
 
     float init_near = 0.01f;
     float init_fov = glm::radians(90.0f);
