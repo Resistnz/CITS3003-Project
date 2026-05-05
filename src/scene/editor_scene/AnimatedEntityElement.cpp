@@ -99,7 +99,7 @@ void EditorScene::AnimatedEntityElement::add_imgui_edit_section(MasterRenderScen
     transformUpdated |= ImGui::ColorEdit3("Specular Tint", &material.specular_tint[0]);
     transformUpdated |= ImGui::ColorEdit3("Ambient Tint", &material.ambient_tint[0]);
 
-    transformUpdated |= ImGui::DragFloat("Shininess", &material.shininess, 1.0f, 0.0f, 100.0f);
+    transformUpdated |= ImGui::DragFloat("Shininess", &material.shininess, 1.0f, 0.0f, 1000.0f);
     if (transformUpdated) {
         update_instance_data();
     }
