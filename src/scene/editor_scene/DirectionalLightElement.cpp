@@ -64,7 +64,7 @@ void EditorScene::DirectionalLightElement::add_imgui_edit_section(MasterRenderSc
     ImGui::Text("Local Transformation");
     bool transformUpdated = false;
     transformUpdated |= ImGui::DragFloat3("Translation", &position[0], 0.01f);
-    transformUpdated |= ImGui::DragFloat3("Direction", &direction[0], 0.01f);
+    transformUpdated |= ImGui::DragFloat3("Rotation", &direction[0], 0.5f);
 
     ImGui::DragDisableCursor(scene_context.window);
     
@@ -97,10 +97,18 @@ void EditorScene::DirectionalLightElement::update_instance_data() {
         transform = (*parent)->transform * transform;
     }
 
+    // Treat 'direction' as Euler angles (Pitch, Yaw, Roll) in degrees
+    glm::quat q(glm::radians(direction));
+
     light->position = glm::vec3(transform[3]); // Extract translation from matrix
+    
+    // Apply our rotation to the default light direction (0, -1, 0)
+    light->direction = glm::normalize(glm::vec3(transform * glm::vec4(q * glm::vec3(0.0f, -1.0f, 0.0f), 0.0f)));
+
     if (visible) {
-        light_arrow->instance_data.model_matrix = transform * glm::scale(glm::vec3{0.1f * visual_scale}) * glm::mat4_cast(glm::rotation(glm::vec3(0.0f, 1.0f, 0.0f), glm::normalize(direction)));
-        // Set rotation to point in direction of light
+        // Arrow points UP (0, 1, 0). Flip 180 on X so it points DOWN to match the light, then apply the Euler rotation.
+        glm::quat arrow_q = q * glm::angleAxis(glm::pi<float>(), glm::vec3(1.0f, 0.0f, 0.0f));
+        light_arrow->instance_data.model_matrix = transform * glm::mat4_cast(arrow_q) * glm::scale(glm::vec3{0.1f * visual_scale});
     } else {
         // Throw off to infinity as a hacky way to make model invisible
         light_arrow->instance_data.model_matrix = glm::scale(glm::vec3{std::numeric_limits<float>::infinity()}) * glm::translate(glm::vec3{std::numeric_limits<float>::infinity()});

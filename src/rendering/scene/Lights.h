@@ -59,7 +59,6 @@ struct DirectionalLight {
     // On GPU format
     // alignas used to conform to std140 for direct binary usage with glsl
     struct Data {
-        alignas(16) glm::vec3 position;
         alignas(16) glm::vec3 direction;
         alignas(16) glm::vec3 colour;
     };

@@ -33,6 +33,12 @@ layout (std140) uniform PointLightArray {
 };
 #endif
 
+#if NUM_DL > 0
+layout (std140) uniform DirectionalLightArray {
+    DirectionalLightData direction_lights[NUM_DL];
+};
+#endif
+
 void main() {
     vec3 ws_view_dir = normalize(ws_view_position - frag_in.ws_position);
     vec3 ws_normal = normalize(frag_in.ws_normal); // Ensure the normal is normalized, as it was was previously lost when interpolated
@@ -41,8 +47,13 @@ void main() {
     Material material = Material(diffuse_tint, specular_tint, ambient_tint, shininess);
 
     LightingResult lighting_result = total_light_calculation(light_calculation_data, material
+        // add point
         #if NUM_PL > 0
         ,point_lights
+        #endif
+
+        #if NUM_DL > 0
+        ,direction_lights
         #endif
     );
 

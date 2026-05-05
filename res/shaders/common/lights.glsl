@@ -23,6 +23,11 @@ struct PointLightData {
     float attenuation;
 };
 
+struct DirectionalLightData {
+    vec3 direction;
+    vec3 colour;
+};
+
 // Calculations
 
 const float ambient_factor = 0.002f;
@@ -59,6 +64,36 @@ void point_light_calculation(PointLightData point_light, LightCalculatioData cal
     total_ambient += ambient_component * falloff; 
 }
 
+void directional_light_calculation(DirectionalLightData direction_light, LightCalculatioData calculation_data, float shininess, inout vec3 total_diffuse, inout vec3 total_specular, inout vec3 total_ambient) {
+    //vec3 ws_light_offset = direction_light.position - calculation_data.ws_frag_position;
+
+    //float distance = length(ws_light_offset); // Distance magnitude for falloff
+
+    // Ambient
+    vec3 ambient_component = ambient_factor * direction_light.colour;
+
+    // Diffuse
+    vec3 ws_light_dir = normalize(-direction_light.direction);
+    float diffuse_factor = max(dot(ws_light_dir, calculation_data.ws_normal), 0.0f);
+    vec3 diffuse_component = diffuse_factor * direction_light.colour;
+
+    // Specular
+    vec3 ws_halfway_dir = normalize(ws_light_dir + calculation_data.ws_view_dir);
+    float specular_factor = pow(max(dot(calculation_data.ws_normal, ws_halfway_dir), 0.0f), shininess);
+    vec3 specular_component = specular_factor * direction_light.colour;
+
+    // Calculate the falloff based on distance and attenuation, following the data and approach provided in the openGL tutorial https://learnopengl.com/Lighting/Light-casters#Attenuation
+    //float linear_multiplier = 4.5/point_light.attenuation; // Linear attenuation factor
+    //float quadratic_multiplier = 75.0/(point_light.attenuation * point_light.attenuation); // Quadratic attenuation factor 
+
+    //float falloff = 1.0f / (1.0f + linear_multiplier * distance + quadratic_multiplier * distance * distance); 
+    //falloff = 1.0f / distance; // Alternative linear falloff for testing
+    // Consider the falloff for each point light and accumulate
+    total_diffuse += diffuse_component; 
+    total_specular += specular_component;
+    total_ambient += ambient_component; 
+}
+
 // Total Calculation
 
 struct LightingResult {
@@ -70,6 +105,9 @@ struct LightingResult {
 LightingResult total_light_calculation(LightCalculatioData light_calculation_data, Material material
         #if NUM_PL > 0
         ,PointLightData point_lights[NUM_PL]
+        #endif
+        #if NUM_DL > 0
+        ,DirectionalLightData direction_lights[NUM_DL]
         #endif
     ) {
 
@@ -83,9 +121,17 @@ LightingResult total_light_calculation(LightCalculatioData light_calculation_dat
     }
     #endif
 
+    #if NUM_DL > 0
+    for (int i = 0; i < NUM_DL; i++) {
+        directional_light_calculation(direction_lights[i], light_calculation_data, material.shininess, total_diffuse, total_specular, total_ambient);
+    }
+    #endif
+
     #if NUM_PL > 0
     total_ambient /= float(NUM_PL);
     #endif
+
+
 
     total_diffuse *= material.diffuse_tint;
     total_specular *= material.specular_tint;
