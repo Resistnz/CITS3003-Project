@@ -20,9 +20,11 @@ void MasterRenderer::update(const Window& window) {
 
 void MasterRenderer::render_scene(MasterRenderScene& render_scene, const SceneContext& scene_context) {
     render_scene.animator.animate(scene_context.window_manager.get_delta_time());
-
+    
+    glCullFace(GL_FRONT); // switch to front to prevent peter panning
     shadow_renderer.render_shadows(render_scene);
-
+    glCullFace(GL_BACK); 
+    
     glViewport(0, 0, scene_context.window.get_framebuffer_width(), scene_context.window.get_framebuffer_height());
 
     glActiveTexture(GL_TEXTURE2);
