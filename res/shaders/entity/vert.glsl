@@ -23,6 +23,7 @@ uniform mat3 normal_matrix;
 
 
 // Global data
+uniform mat4 projection_view_matrix;
 //uniform vec3 ws_view_position;
 
 
