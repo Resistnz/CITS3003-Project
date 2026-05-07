@@ -6,13 +6,15 @@
 layout(location = 0) in vec3 vertex_position;
 layout(location = 1) in vec3 normal;
 layout(location = 2) in vec2 texture_coordinate;
-layout(location = 3) in vec4 bone_weights;
-layout(location = 4) in uvec4 bone_indices;
+layout(location = 3) in vec3 tangent;
+layout(location = 4) in vec4 bone_weights;
+layout(location = 5) in uvec4 bone_indices;
 
 out VertexOut {
     vec2 texture_coordinate;
     vec3 ws_position;
     vec3 ws_normal; 
+    mat3 TBN;
 } vertex_out;
 
 // Per instance data
@@ -43,6 +45,14 @@ void main() {
 
     vertex_out.ws_position = (animation_matrix * vec4(vertex_position, 1.0f)).xyz;
     vertex_out.ws_normal = normalize(normal_matrix * normal);
+
+    // Build TBN after bone transformation
+    vec3 T = normalize(normal_matrix * tangent);
+    vec3 N = vertex_out.ws_normal;
+    T = normalize(T - dot(T, N) * N);
+    vec3 B = cross(N, T);
+    vertex_out.TBN = mat3(T, B, N);
+
     vertex_out.texture_coordinate = texture_coordinate;
 
     gl_Position = projection_view_matrix * vec4(vertex_out.ws_position, 1.0f);

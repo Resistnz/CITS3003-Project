@@ -5,6 +5,7 @@ in VertexOut {
     vec2 texture_coordinate;
     vec3 ws_position;
     vec3 ws_normal;
+    mat3 TBN;
 } frag_in;
 
 layout(location = 0) out vec4 out_colour;
@@ -14,6 +15,7 @@ uniform float inverse_gamma;
 
 uniform sampler2D diffuse_texture;
 uniform sampler2D specular_map_texture;
+uniform sampler2D normal_map_texture;
 
 uniform vec3 ws_view_position;
 
@@ -38,7 +40,14 @@ layout (std140) uniform DirectionalLightArray {
 
 void main() {
     vec3 ws_view_dir = normalize(ws_view_position - frag_in.ws_position);
-    vec3 ws_normal = normalize(frag_in.ws_normal); 
+
+    
+    // Sample normal map and transform it into world space
+    vec3 tangent_normal = texture(normal_map_texture, frag_in.texture_coordinate).rgb;
+    tangent_normal = normalize(tangent_normal * 2.0 - 1.0); //
+    vec3 ws_normal = normalize(frag_in.TBN * tangent_normal); // Ensure the normal is normalized, as it was was previously lost when interpolated
+
+
     LightCalculatioData light_calculation_data = LightCalculatioData(frag_in.ws_position, ws_view_dir, ws_normal);
     Material material = Material(diffuse_tint, specular_tint, ambient_tint, shininess);
 
