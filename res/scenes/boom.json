@@ -1,0 +1,202 @@
+[
+    {
+        "diffuse_texture": {
+            "filename": "plaster_stone_wall_02_diff_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                10.0,
+                1.000002384185791,
+                10.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 9.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "double_plane.obj",
+        "name": "Ground Plane",
+        "normal_map_texture": {
+            "filename": "plaster_stone_wall_02_nor_gl_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "diffuse_texture": {
+            "filename": "plaster_stone_wall_02_diff_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": false,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.19198621809482574,
+                0.0
+            ],
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                3.069999933242798,
+                3.069999933242798,
+                3.069999933242798
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "crate.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "plaster_stone_wall_02_nor_gl_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "colour": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        "direction": [
+            0.0020000000949949026,
+            77.0,
+            -66.0
+        ],
+        "enabled": true,
+        "label": "Directional Light",
+        "name": "New Directional Light",
+        "position": [
+            0.0,
+            1.0,
+            0.0
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    },
+    {
+        "diffuse_texture": {
+            "filename": "propane_tank_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                6.539999961853027,
+                6.539999961853027,
+                6.539999961853027
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "propane_tank_4k.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "propane_tank_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "propane_tank_rough_4k.jpg",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    }
+]
