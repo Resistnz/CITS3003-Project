@@ -16,7 +16,8 @@ std::unique_ptr<EditorScene::AnimatedEntityElement> EditorScene::AnimatedEntityE
         }},
         AnimatedEntityRenderer::RenderData{
             scene_context.texture_loader.default_white_texture(),
-            scene_context.texture_loader.default_white_texture()
+            scene_context.texture_loader.default_white_texture(),
+            scene_context.texture_loader.default_normal_map_texture()
         }
     );
 

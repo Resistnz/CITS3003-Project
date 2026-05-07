@@ -304,6 +304,7 @@ std::shared_ptr<MeshHierarchy<VertexData>> ModelLoader::load_hierarchy_from_file
             v ? std::vector<glm::vec3>{v, v + mesh->mNumVertices} : std::vector<glm::vec3>{},
             n ? std::vector<glm::vec3>{n, n + mesh->mNumVertices} : std::vector<glm::vec3>{},
             t ? std::vector<glm::vec2>{t, t + mesh->mNumVertices} : std::vector<glm::vec2>{},
+            {}, // tangents (not needed for animated entities apparently)
             bone_weights
         };
 
