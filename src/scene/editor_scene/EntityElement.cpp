@@ -17,7 +17,8 @@ std::unique_ptr<EditorScene::EntityElement> EditorScene::EntityElement::new_defa
         },
         EntityRenderer::RenderData{
             scene_context.texture_loader.default_white_texture(),
-            scene_context.texture_loader.default_white_texture()
+            scene_context.texture_loader.default_white_texture(),
+            scene_context.texture_loader.default_normal_map_texture()
         }
     );
 
@@ -43,6 +44,7 @@ std::unique_ptr<EditorScene::EntityElement> EditorScene::EntityElement::from_jso
     new_entity->rendered_entity->model = scene_context.model_loader.load_from_file<EntityRenderer::VertexData>(j["model"]);
     new_entity->rendered_entity->render_data.diffuse_texture = texture_from_json(scene_context, j["diffuse_texture"]);
     new_entity->rendered_entity->render_data.specular_map_texture = texture_from_json(scene_context, j["specular_map_texture"]);
+    new_entity->rendered_entity->render_data.normal_map_texture = texture_from_json(scene_context, j["normal_map_texture"]);
 
     new_entity->update_instance_data();
     return new_entity;
@@ -61,6 +63,7 @@ json EditorScene::EntityElement::into_json() const {
         {"model", rendered_entity->model->get_filename().value()},
         {"diffuse_texture", texture_to_json(rendered_entity->render_data.diffuse_texture)},
         {"specular_map_texture", texture_to_json(rendered_entity->render_data.specular_map_texture)},
+        {"normal_map_texture", texture_to_json(rendered_entity->render_data.normal_map_texture)},
     };
 }
 
@@ -76,6 +79,8 @@ void EditorScene::EntityElement::add_imgui_edit_section(MasterRenderScene& rende
     scene_context.model_loader.add_imgui_model_selector("Model Selection", rendered_entity->model);
     scene_context.texture_loader.add_imgui_texture_selector("Diffuse Texture", rendered_entity->render_data.diffuse_texture);
     scene_context.texture_loader.add_imgui_texture_selector("Specular Map", rendered_entity->render_data.specular_map_texture, false);
+    scene_context.texture_loader.add_imgui_texture_selector("Normal Map", rendered_entity->render_data.normal_map_texture, false);
+    
     ImGui::Spacing();
     transformUpdated |= ImGui::ColorEdit3("Diffuse Tint", &material.diffuse_tint[0]);
     transformUpdated |= ImGui::ColorEdit3("Specular Tint", &material.specular_tint[0]);
