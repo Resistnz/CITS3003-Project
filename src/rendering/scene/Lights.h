@@ -55,12 +55,14 @@ struct DirectionalLight {
     // Alpha components are just used to store a scalar that is applied before passing to the GPU
     glm::vec4 colour{};
     float attenuation = 1.0f;
+    glm::mat4 light_space_matrix{1.0f};
 
     // On GPU format
     // alignas used to conform to std140 for direct binary usage with glsl
     struct Data {
         alignas(16) glm::vec3 direction;
         alignas(16) glm::vec3 colour;
+        alignas(16) glm::mat4 light_space_matrix; // create space for projection used for shadow map
     };
 };
 

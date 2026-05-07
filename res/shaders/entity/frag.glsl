@@ -18,6 +18,8 @@ uniform sampler2D specular_map_texture;
 
 uniform vec3 ws_view_position;
 
+uniform sampler2D shadowMap;
+
 
 
 // Material properties
@@ -46,7 +48,7 @@ void main() {
     LightCalculatioData light_calculation_data = LightCalculatioData(frag_in.ws_position, ws_view_dir, ws_normal);
     Material material = Material(diffuse_tint, specular_tint, ambient_tint, shininess);
 
-    LightingResult lighting_result = total_light_calculation(light_calculation_data, material
+    LightingResult lighting_result = total_light_calculation(light_calculation_data, material, shadowMap
         // add point
         #if NUM_PL > 0
         ,point_lights

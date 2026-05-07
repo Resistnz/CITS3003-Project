@@ -22,6 +22,7 @@ void BaseLitEntityShader::get_uniforms_set_bindings() {
     // Texture sampler bindings
     set_binding("diffuse_texture", 0);
     set_binding("specular_map_texture", 1);
+    set_binding("shadowMap", 2);
     // Uniform block bindings
     set_block_binding("PointLightArray", POINT_LIGHT_BINDING);
     set_block_binding("DirectionalLightArray", DIRECTIONAL_LIGHT_BINDING);
@@ -71,6 +72,7 @@ void BaseLitEntityShader::set_directional_lights(const std::vector<DirectionalLi
 
         directional_lights_ubo.data[i].direction = directional_light.direction;
         directional_lights_ubo.data[i].colour = scaled_colour;
+        directional_lights_ubo.data[i].light_space_matrix = directional_light.light_space_matrix;
     }
 
     set_frag_define("NUM_DL", Formatter() << count);

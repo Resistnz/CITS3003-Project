@@ -112,6 +112,7 @@ add_executable(cits3003_project
         src/rendering/scene/MasterRenderScene.cpp
         src/rendering/scene/Animator.cpp
         src/rendering/scene/Lights.cpp
+        src/rendering/renders/ShadowRenderer.cpp
         src/rendering/renders/MasterRenderer.cpp
         src/rendering/renders/shaders/ShaderInterface.cpp
         src/rendering/renders/shaders/BaseEntityShader.cpp

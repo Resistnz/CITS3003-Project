@@ -8,9 +8,11 @@
 #include "system_interfaces/WindowManager.h"
 #include "scene/SceneInterface.h"
 #include "scene/SceneContext.h"
+#include "ShadowRenderer.h"
 
 /// The Master Renderer, which contains each of the individual renderers, and calls render on them.
 class MasterRenderer {
+    ShadowRenderer shadow_renderer;
     EntityRenderer::EntityRenderer entity_renderer;
     AnimatedEntityRenderer::AnimatedEntityRenderer animated_entity_renderer;
     EmissiveEntityRenderer::EmissiveEntityRenderer emissive_entity_renderer;

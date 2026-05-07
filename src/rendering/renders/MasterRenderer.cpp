@@ -10,7 +10,7 @@ MasterRenderer::MasterRenderer() : entity_renderer(), animated_entity_renderer()
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glEnable(GL_MULTISAMPLE);
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 1.0);  
 }
 
 void MasterRenderer::update(const Window& window) {
@@ -20,6 +20,14 @@ void MasterRenderer::update(const Window& window) {
 
 void MasterRenderer::render_scene(MasterRenderScene& render_scene, const SceneContext& scene_context) {
     render_scene.animator.animate(scene_context.window_manager.get_delta_time());
+
+    shadow_renderer.render_shadows(render_scene);
+
+    glViewport(0, 0, scene_context.window.get_framebuffer_width(), scene_context.window.get_framebuffer_height());
+
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, shadow_renderer.get_depth_map_texture());
+
     entity_renderer.render(render_scene.entity_scene, render_scene.light_scene);
     animated_entity_renderer.render(render_scene.animated_entity_scene, render_scene.light_scene);
     emissive_entity_renderer.render(render_scene.emissive_entity_scene);

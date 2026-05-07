@@ -45,6 +45,7 @@ public:
     void use_camera(const CameraInterface& camera_interface);
 
     friend class MasterRenderer;
+    friend class ShadowRenderer;
 };
 
 #endif //MASTER_RENDER_SCENE_H
