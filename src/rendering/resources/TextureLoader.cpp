@@ -10,8 +10,9 @@
 
 #define WHITE_TEXTURE_NAME "[WHITE]"
 #define BLACK_TEXTURE_NAME "[BLACK]"
+#define NORMAL_MAP_TEXTURE_NAME "[NORMAL_MAP]"
 
-TextureLoader::TextureLoader(std::string import_path) : import_path(std::move(import_path)), special_names({WHITE_TEXTURE_NAME, BLACK_TEXTURE_NAME}) {
+TextureLoader::TextureLoader(std::string import_path) : import_path(std::move(import_path)), special_names({WHITE_TEXTURE_NAME, BLACK_TEXTURE_NAME, NORMAL_MAP_TEXTURE_NAME}) {
     std::fill_n(default_white_texture_data, DEFAULT_TEXTURE_LEN, (unsigned char) 0xFF);
 }
 
@@ -32,6 +33,11 @@ std::shared_ptr<TextureHandle> TextureLoader::load_from_file(const std::string& 
         auto black = default_black_texture();
         black->flipped = flip_vertical;
         return black;
+    };
+    if (file == NORMAL_MAP_TEXTURE_NAME) {
+        auto normal_map = default_normal_map_texture();
+        normal_map->flipped = flip_vertical;
+        return normal_map;
     };
 
     std::string full_path = import_path + "/" + file;
@@ -119,9 +125,28 @@ std::shared_ptr<TextureHandle> TextureLoader::default_black_texture() {
     return default_black_texture_cache;
 }
 
+std::shared_ptr<TextureHandle> TextureLoader::default_normal_map_texture() {
+    if (default_normal_map_texture_cache != nullptr) return default_normal_map_texture_cache;
+
+    uint texture_id;
+    glGenTextures(1, &texture_id);
+    glBindTexture(GL_TEXTURE_2D, texture_id);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, DEFAULT_TEXTURE_SIZE, DEFAULT_TEXTURE_SIZE, 0, GL_RGB, GL_UNSIGNED_BYTE, &default_normal_map_texture_data[0]);
+
+    default_normal_map_texture_cache = std::make_shared<TextureHandle>(texture_id, DEFAULT_TEXTURE_SIZE, DEFAULT_TEXTURE_SIZE, false, false, NORMAL_MAP_TEXTURE_NAME);
+    return default_normal_map_texture_cache;
+}
+
 void TextureLoader::cleanup() {
     default_black_texture_cache = nullptr;
     default_white_texture_cache = nullptr;
+    default_normal_map_texture_cache = nullptr;
 }
 
 void TextureLoader::add_imgui_texture_selector(const std::string& caption, std::shared_ptr<TextureHandle>& texture_handle, bool prefer_srgb) {
@@ -195,11 +220,12 @@ const std::vector<std::string>& TextureLoader::get_available_textures(bool force
     available_textures = std::vector<std::string>{};
     available_textures->push_back(WHITE_TEXTURE_NAME);
     available_textures->push_back(BLACK_TEXTURE_NAME);
+    available_textures->push_back(NORMAL_MAP_TEXTURE_NAME);
 
     for (auto const& dir_entry: std::filesystem::recursive_directory_iterator(import_path)) {
         available_textures->push_back(std::filesystem::relative(dir_entry, import_path).string());
     }
-    std::sort(available_textures.value().begin() + 2, available_textures.value().end());
+    std::sort(available_textures.value().begin() + 3, available_textures.value().end());
 
     return available_textures.value();
 }

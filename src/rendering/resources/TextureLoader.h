@@ -21,9 +21,12 @@ class TextureLoader {
     static constexpr int DEFAULT_TEXTURE_LEN = DEFAULT_TEXTURE_SIZE * DEFAULT_TEXTURE_SIZE * DEFAULT_TEXTURE_BPP;
     unsigned char default_white_texture_data[DEFAULT_TEXTURE_LEN]{};
     unsigned char default_black_texture_data[DEFAULT_TEXTURE_LEN]{};
+    unsigned char default_normal_map_texture_data[DEFAULT_TEXTURE_LEN]{};
 
     std::shared_ptr<TextureHandle> default_white_texture_cache{};
     std::shared_ptr<TextureHandle> default_black_texture_cache{};
+    std::shared_ptr<TextureHandle> default_normal_map_texture_cache{};
+
     std::unordered_set<std::string> special_names;
 
     std::optional<std::vector<std::string>> available_textures{};
@@ -42,6 +45,8 @@ public:
     std::shared_ptr<TextureHandle> default_white_texture();
     /// Provides a pure black (0x000000) texture
     std::shared_ptr<TextureHandle> default_black_texture();
+    /// Provides a normal map of (0.5, 0.5, 1) (flat surface normal)
+    std::shared_ptr<TextureHandle> default_normal_map_texture();
 
     /// Helper method to provide a selector over all the texture files in the import_path directory.
     /// If the prefer_srgb flag is selected, then when going from no texture to a valid texture it will default to enabling srgb.
