@@ -81,6 +81,7 @@ void AnimatedEntityRenderer::VertexData::from_mesh(const VertexCollection& verte
             vertex_collection.positions[i],
             vertex_collection.normals[i],
             i < vertex_collection.tex_coords.size() ? vertex_collection.tex_coords[i] : glm::vec2{0.0f},
+            i < vertex_collection.tangents.size() ? vertex_collection.tangents[i] : glm::vec3(1,0,0),
             vertex_collection.bones[i].first,
             vertex_collection.bones[i].second
         });
@@ -92,11 +93,13 @@ void AnimatedEntityRenderer::VertexData::setup_attrib_pointers() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, position));
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, normal));
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, texture_coordinate));
-    glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, bone_weights));
-    glVertexAttribIPointer(4, 4, GL_UNSIGNED_INT, sizeof(VertexData), (void*) offsetof(VertexData, bone_indices)); // Note the `I` in the function name, needed to have ints work as expected
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, tangent));
+    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, bone_weights));
+    glVertexAttribIPointer(5, 4, GL_UNSIGNED_INT, sizeof(VertexData), (void*) offsetof(VertexData, bone_indices)); // Note the `I` in the function name, needed to have ints work as expected
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
     glEnableVertexAttribArray(2);
     glEnableVertexAttribArray(3);
     glEnableVertexAttribArray(4);
+    glEnableVertexAttribArray(5);
 }

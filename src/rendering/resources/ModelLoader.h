@@ -27,6 +27,7 @@ struct VertexCollection {
     std::vector<glm::vec3> positions;
     std::vector<glm::vec3> normals;
     std::vector<glm::vec2> tex_coords;
+    std::vector<glm::vec3> tangents;
     // [(bone_weights, bone_indices)]
     std::vector<std::pair<glm::vec4, glm::uvec4>> bones;
 };
@@ -181,11 +182,13 @@ void ModelLoader::load_node(const aiScene* scene, const aiNode* node, std::vecto
         const auto v = reinterpret_cast<glm::vec3*>(mesh->mVertices);
         const auto n = reinterpret_cast<glm::vec3*>(mesh->mNormals);
         const auto t = reinterpret_cast<glm::vec3*>(mesh->mTextureCoords[0]);
+        const auto tan = reinterpret_cast<glm::vec3*>(mesh->mTangents); 
 
         VertexCollection vertex_collection{
             v ? std::vector<glm::vec3>{v, v + mesh->mNumVertices} : std::vector<glm::vec3>{},
             n ? std::vector<glm::vec3>{n, n + mesh->mNumVertices} : std::vector<glm::vec3>{},
             t ? std::vector<glm::vec2>{t, t + mesh->mNumVertices} : std::vector<glm::vec2>{},
+            tan ? std::vector<glm::vec3>{tan, tan + mesh->mNumVertices} : std::vector<glm::vec3>{}, // load tangents from mesh
             {}
         };
 
@@ -195,6 +198,10 @@ void ModelLoader::load_node(const aiScene* scene, const aiNode* node, std::vecto
 
         for (auto& normal: vertex_collection.normals) {
             normal = normal_matrix * normal;
+        }
+
+        for (auto& tangent : vertex_collection.tangents) {
+            tangent = normal_matrix * tangent;
         }
 
         VertexData::from_mesh(vertex_collection, vertices);

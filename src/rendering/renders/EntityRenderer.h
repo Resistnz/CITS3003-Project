@@ -23,6 +23,7 @@ namespace EntityRenderer {
         glm::vec3 position;
         glm::vec3 normal;
         glm::vec2 texture_coordinate;
+        glm::vec3 tangent;
 
         static void from_mesh(const VertexCollection& vertex_collection, std::vector<VertexData>& out_vertices);
         static void setup_attrib_pointers();
