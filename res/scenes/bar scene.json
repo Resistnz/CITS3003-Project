@@ -1,0 +1,291 @@
+[
+    {
+        "diffuse_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                -0.009999999776482582,
+                0.0
+            ],
+            "scale": [
+                10.0,
+                1.0,
+                10.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                0.8529411554336548,
+                0.2634083032608032,
+                0.2634083032608032,
+                1.0
+            ],
+            "shininess": 128.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "double_plane.obj",
+        "name": "Ground Plane",
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "diffuse_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                1.5707963705062866
+            ],
+            "position": [
+                -3.569999933242798,
+                0.8999999761581421,
+                -1.2200000286102295
+            ],
+            "scale": [
+                5.822003364562988,
+                4.96999979019165,
+                5.112005233764648
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "double_plane.obj",
+        "name": "wall",
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "diffuse_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                1.5707963705062866,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -1.690000057220459,
+                1.7799999713897705,
+                -3.5
+            ],
+            "scale": [
+                4.420000076293945,
+                1.9700000286102295,
+                2.5399999618530273
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "double_plane.obj",
+        "name": "wall2",
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "diffuse_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -1.5399999618530273,
+                2.9000000953674316,
+                -1.590000033378601
+            ],
+            "scale": [
+                5.019999980926514,
+                5.019999980926514,
+                5.019999980926514
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                0.38235294818878174,
+                0.33737024664878845,
+                0.33737024664878845,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "double_plane.obj",
+        "name": "ceiling",
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "attenuation": 1.0,
+        "colour": [
+            1.0,
+            0.7713379263877869,
+            0.4019607901573181,
+            1.0
+        ],
+        "enabled": true,
+        "label": "Point Light",
+        "name": "Default Point Light",
+        "position": [
+            -0.8199999928474426,
+            2.359999895095825,
+            -0.7799999713897705
+        ],
+        "visible": true,
+        "visual_scale": 0.5099999904632568
+    },
+    {
+        "diffuse_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                0.27941179275512695,
+                0.18720105290412903,
+                0.1301182359457016,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "model": "bar.obj",
+        "name": "bar",
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    }
+]
