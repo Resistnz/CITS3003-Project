@@ -14,6 +14,12 @@
 
 TextureLoader::TextureLoader(std::string import_path) : import_path(std::move(import_path)), special_names({WHITE_TEXTURE_NAME, BLACK_TEXTURE_NAME, NORMAL_MAP_TEXTURE_NAME}) {
     std::fill_n(default_white_texture_data, DEFAULT_TEXTURE_LEN, (unsigned char) 0xFF);
+    // Fill normal map with (128, 128, 255) per pixel - flat normal map
+    for (int i = 0; i < DEFAULT_TEXTURE_LEN; i += 3) {
+        default_normal_map_texture_data[i]     = 128; // R -> X = 0
+        default_normal_map_texture_data[i + 1] = 128; // G -> Y = 0
+        default_normal_map_texture_data[i + 2] = 255; // B -> Z = 1
+    }
 }
 
 float get_max_anisotropy() {

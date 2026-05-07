@@ -42,6 +42,8 @@ void AnimatedEntityRenderer::AnimatedEntityRenderer::render(const RenderScene& r
         glBindTexture(GL_TEXTURE_2D, entity->render_data.diffuse_texture->get_texture_id());
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, entity->render_data.specular_map_texture->get_texture_id());
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, entity->render_data.normal_map_texture->get_texture_id());
 
         entity->mesh_hierarchy->calculate_animation(entity->animation_id, entity->animation_time_seconds);
         entity->mesh_hierarchy->visit_nodes([this, &entity](const MeshHierarchyNode& node, glm::mat4 accumulated_transformation) {
