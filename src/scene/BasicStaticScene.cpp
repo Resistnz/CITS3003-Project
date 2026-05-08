@@ -27,6 +27,8 @@ void BasicStaticScene::open(const SceneContext& scene_context) {
     auto cone_specular = scene_context.texture_loader.load_from_file("cone_specular.png", false, true);
     auto cone_retro_map = scene_context.texture_loader.load_from_file("cone_retro_map.png", false, true);
 
+    auto default_normal_map_texture = scene_context.texture_loader.default_normal_map_texture();
+
     auto light_pos = glm::vec3(2.0f, 3.0f, 4.0f);
     auto light_col = glm::vec3(1.0f);
 
@@ -44,7 +46,8 @@ void BasicStaticScene::open(const SceneContext& scene_context) {
         },
         EntityRenderer::RenderData{
             default_white_texture,
-            default_white_texture
+            default_white_texture,
+            default_normal_map_texture
         }
     );
 
@@ -62,8 +65,8 @@ void BasicStaticScene::open(const SceneContext& scene_context) {
         },
         EntityRenderer::RenderData{
             texture,
-            specular_map
-
+            specular_map,
+            default_normal_map_texture
         }
     );
 
@@ -96,6 +99,7 @@ void BasicStaticScene::open(const SceneContext& scene_context) {
         EntityRenderer::RenderData{
             cone_diffuse,
             cone_specular,
+            default_normal_map_texture
         }
     );
 

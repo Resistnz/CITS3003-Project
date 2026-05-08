@@ -49,6 +49,8 @@ void EntityRenderer::EntityRenderer::render(const RenderScene& render_scene, con
         glBindTexture(GL_TEXTURE_2D, entity->render_data.diffuse_texture->get_texture_id());
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, entity->render_data.specular_map_texture->get_texture_id());
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, entity->render_data.normal_map_texture->get_texture_id()); // Add normal map to shader
 
         glBindVertexArray(entity->model->get_vao());
         glDrawElementsBaseVertex(GL_TRIANGLES, entity->model->get_index_count(), GL_UNSIGNED_INT, nullptr, entity->model->get_vertex_offset());
@@ -74,7 +76,8 @@ void EntityRenderer::VertexData::from_mesh(const VertexCollection& vertex_collec
         out_vertices.push_back(VertexData{
             vertex_collection.positions[i],
             vertex_collection.normals[i],
-            vertex_collection.tex_coords[i]
+            vertex_collection.tex_coords[i],
+            vertex_collection.tangents[i]            
         });
     }
 }
@@ -84,7 +87,9 @@ void EntityRenderer::VertexData::setup_attrib_pointers() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, position));
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, normal));
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, texture_coordinate));
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), (void*) offsetof(VertexData, tangent)); // Add tangents to vertex data
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
     glEnableVertexAttribArray(2);
+    glEnableVertexAttribArray(3);
 }

@@ -47,7 +47,8 @@ void EditorScene::EditorScene::open(const SceneContext& scene_context) {
             },
             EntityRenderer::RenderData{
                 scene_context.texture_loader.default_white_texture(),
-                scene_context.texture_loader.default_white_texture()
+                scene_context.texture_loader.default_white_texture(),
+                scene_context.texture_loader.default_normal_map_texture()
             }
         )
     );

@@ -34,11 +34,12 @@ struct BaseLitEntityInstanceData : public BaseEntityInstanceData {
 };
 
 struct BaseLitEntityRenderData {
-    BaseLitEntityRenderData(std::shared_ptr<TextureHandle> diffuse_texture, std::shared_ptr<TextureHandle> specular_map_texture)
-        : diffuse_texture(std::move(diffuse_texture)), specular_map_texture(std::move(specular_map_texture)) {}
+    BaseLitEntityRenderData(std::shared_ptr<TextureHandle> diffuse_texture, std::shared_ptr<TextureHandle> specular_map_texture, std::shared_ptr<TextureHandle> normal_map_texture)
+        : diffuse_texture(std::move(diffuse_texture)), specular_map_texture(std::move(specular_map_texture)), normal_map_texture(std::move(normal_map_texture)) {}
 
     std::shared_ptr<TextureHandle> diffuse_texture;
     std::shared_ptr<TextureHandle> specular_map_texture;
+    std::shared_ptr<TextureHandle> normal_map_texture;
 };
 
 using BaseLitEntityGlobalData = BaseEntityGlobalData;
