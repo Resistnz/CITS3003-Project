@@ -18,11 +18,18 @@ void MasterRenderer::update(const Window& window) {
     glViewport(0, 0, (int) window.get_framebuffer_width(), (int) window.get_framebuffer_height());
 }
 
-void MasterRenderer::render_scene(MasterRenderScene& render_scene, const SceneContext& scene_context) {
+void MasterRenderer::render_scene(MasterRenderScene& render_scene, const SceneContext& scene_context, const CameraInterface& camera) {
     render_scene.animator.animate(scene_context.window_manager.get_delta_time());
     entity_renderer.render(render_scene.entity_scene, render_scene.light_scene);
     animated_entity_renderer.render(render_scene.animated_entity_scene, render_scene.light_scene);
     emissive_entity_renderer.render(render_scene.emissive_entity_scene);
+
+    // Render skybox last — depth function GL_LEQUAL ensures it only fills background pixels
+    skybox_renderer.render(camera.get_view_matrix(), camera.get_projection_matrix(), camera.get_gamma());
+}
+
+SkyboxRenderer& MasterRenderer::get_skybox_renderer() {
+    return skybox_renderer;
 }
 
 void MasterRenderer::sync() {
@@ -75,6 +82,7 @@ void MasterRenderer::add_imgui_options_section(WindowManager& window_manager) {
             failures += entity_renderer.refresh_shaders() ? 0 : 1;
             failures += animated_entity_renderer.refresh_shaders() ? 0 : 1;
             failures += emissive_entity_renderer.refresh_shaders() ? 0 : 1;
+            failures += skybox_renderer.refresh_shaders() ? 0 : 1;
         }
         if (glfwGetTime() - 2.0 <= last_time) {
             ImGui::SameLine();

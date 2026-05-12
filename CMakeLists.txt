@@ -26,6 +26,7 @@ set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(ASSIMP_WARNINGS_AS_ERRORS OFF CACHE BOOL "" FORCE)
 set(ASSIMP_BUILD_ZLIB ON CACHE BOOL "" FORCE)
+set(ASSIMP_BUILD_IFC_IMPORTER OFF CACHE BOOL "" FORCE)
 add_subdirectory(lib/assimp)
 # end assimp
 
@@ -119,6 +120,7 @@ add_executable(cits3003_project
         src/rendering/renders/EntityRenderer.cpp
         src/rendering/renders/AnimatedEntityRenderer.cpp
         src/rendering/renders/EmissiveEntityRenderer.cpp
+        src/rendering/renders/SkyboxRenderer.cpp
         src/rendering/cameras/PanningCamera.cpp
         src/rendering/cameras/FlyingCamera.cpp
         src/rendering/imgui/ImGuiImpl.cpp

@@ -25,7 +25,7 @@ struct PointLight {
     glm::vec3 position{};
     // Alpha components are just used to store a scalar that is applied before passing to the GPU
     glm::vec4 colour{};
-    float attenuation = 1.0f;
+    float attenuation = 0.5f;
 
     // On GPU format
     // alignas used to conform to std140 for direct binary usage with glsl

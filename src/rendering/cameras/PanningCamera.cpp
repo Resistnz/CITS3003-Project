@@ -30,8 +30,8 @@ void PanningCamera::update(const Window& window, float dt, bool controls_enabled
             auto pan = window.get_mouse_delta(GLFW_MOUSE_BUTTON_MIDDLE);
             focus_point += (x_basis * (float) -pan.x + y_basis * (float) pan.y) * PAN_SPEED * dt * distance / (float) window.get_window_height();
 
-            pitch -= PITCH_SPEED * (float) window.get_mouse_delta(GLFW_MOUSE_BUTTON_RIGHT).y;
-            yaw -= YAW_SPEED * (float) window.get_mouse_delta(GLFW_MOUSE_BUTTON_RIGHT).x;
+            pitch += PITCH_SPEED * (float) window.get_mouse_delta(GLFW_MOUSE_BUTTON_RIGHT).y;
+            yaw += YAW_SPEED * (float) window.get_mouse_delta(GLFW_MOUSE_BUTTON_RIGHT).x;
             distance -= ZOOM_SCROLL_MULTIPLIER * ZOOM_SPEED * window.get_scroll_delta();
 
             auto is_dragging = window.is_mouse_pressed(GLFW_MOUSE_BUTTON_RIGHT) || window.is_mouse_pressed(GLFW_MOUSE_BUTTON_MIDDLE);

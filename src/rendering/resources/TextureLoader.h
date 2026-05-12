@@ -41,6 +41,10 @@ public:
     /// Loads the file at the specified path into GPU memory, with flags for if the texture is sRGB and to flip it vertically.
     std::shared_ptr<TextureHandle> load_from_file(const std::string& file, bool srgb = true, bool flip_vertical = false);
 
+    /// Loads 6 face images into a cubemap texture.
+    /// faces should be in order: +X, -X, +Y, -Y, +Z, -Z
+    uint load_cubemap(const std::vector<std::string>& faces);
+
     /// Provides a pure white (0xFFFFFF) texture
     std::shared_ptr<TextureHandle> default_white_texture();
     /// Provides a pure black (0x000000) texture

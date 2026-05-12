@@ -95,6 +95,35 @@ std::shared_ptr<TextureHandle> TextureLoader::load_from_file(const std::string& 
     return texture;
 }
 
+uint TextureLoader::load_cubemap(const std::vector<std::string>& faces) {
+    uint texture_id;
+    glGenTextures(1, &texture_id);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, texture_id);
+
+    stbi_set_flip_vertically_on_load(false); // Cubemaps are NOT flipped
+
+    for (uint i = 0; i < faces.size(); i++) {
+        std::string full_path = import_path + "/" + faces[i];
+        int width, height;
+        stbi_uc* data = stbi_load(full_path.c_str(), &width, &height, nullptr, STBI_rgb);
+        if (!data) {
+            std::cerr << "Cubemap face failed to load: " << full_path << std::endl;
+            continue;
+        }
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+                     0, GL_SRGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        stbi_image_free(data);
+    }
+
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+    return texture_id;
+}
+
 std::shared_ptr<TextureHandle> TextureLoader::default_white_texture() {
     if (default_white_texture_cache != nullptr) return default_white_texture_cache;
 

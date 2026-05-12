@@ -23,8 +23,8 @@ namespace EditorScene {
         const float init_distance = 8.0f;
         const glm::vec3 init_focus_point = {0.0f, 0.0f, 0.0f};
         const glm::vec3 init_position = {-4.0f, 4.0f * sqrtf(2.0f), 4.0f};
-        const float init_pitch = glm::radians(-45.0f);
-        const float init_yaw = glm::radians(-45.0f);
+        const float init_pitch = glm::radians(45.0f);
+        const float init_yaw = glm::radians(315.0f);
         const float init_near = 0.01f;
         const float init_fov = glm::radians(90.0f);
 
