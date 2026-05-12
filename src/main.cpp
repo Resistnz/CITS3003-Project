@@ -66,6 +66,19 @@ int main() {
         // Use the handle of the editor scene to switch to it, making it the starting scene
         scene_manager.switch_scene(editor_scene, scene_context);
 
+        // Load the skybox cubemap textures and give them to the master renderer.
+        // Faces must be in order: +X, -X, +Y, -Y, +Z, -Z
+        try {
+            auto cubemap_id = texture_loader.load_cubemap({
+                "skybox/right.jpg",  "skybox/left.jpg",
+                "skybox/top.jpg",    "skybox/bottom.jpg",
+                "skybox/front.jpg",  "skybox/back.jpg"
+            });
+            master_renderer.get_skybox_renderer().set_cubemap(cubemap_id);
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to load skybox cubemap: " << e.what() << std::endl;
+            std::cerr << "Skybox will not be rendered. Place 6 face images in res/textures/skybox/" << std::endl;
+        }
         // The game/render loop that runs until you close the program
         while (!window.should_close()) {
             // Process window/key/mouse events that have happened since the last loop
@@ -99,7 +112,8 @@ int main() {
             // Tick the scene, so it can do per-frame logic
             scene_manager.tick_scene(scene_context);
             // Tell the MasterRenderer to use render the current scene to the window
-            master_renderer.render_scene(scene_manager.get_current_scene()->get_render_scene(), scene_context);
+            auto& current_scene = scene_manager.get_current_scene();
+            master_renderer.render_scene(current_scene->get_render_scene(), scene_context, current_scene->get_camera());
 
             if (scene_context.imgui_enabled) {
                 // Tell ImGUI to now render itself onto the frame

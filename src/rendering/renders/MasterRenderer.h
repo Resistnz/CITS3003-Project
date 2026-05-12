@@ -4,9 +4,10 @@
 #include "utility/SyncManager.h"
 #include "EntityRenderer.h"
 #include "EmissiveEntityRenderer.h"
+#include "SkyboxRenderer.h"
 #include "rendering/scene/MasterRenderScene.h"
 #include "system_interfaces/WindowManager.h"
-#include "scene/SceneInterface.h"
+#include "rendering/cameras/CameraInterface.h"
 #include "scene/SceneContext.h"
 
 /// The Master Renderer, which contains each of the individual renderers, and calls render on them.
@@ -14,6 +15,7 @@ class MasterRenderer {
     EntityRenderer::EntityRenderer entity_renderer;
     AnimatedEntityRenderer::AnimatedEntityRenderer animated_entity_renderer;
     EmissiveEntityRenderer::EmissiveEntityRenderer emissive_entity_renderer;
+    SkyboxRenderer skybox_renderer;
     SyncManager sync_manager;
 
     struct RenderSettings {
@@ -29,8 +31,11 @@ public:
 
     /// Prepare the master renderer for a new frame
     void update(const Window& window);
-    /// Render the provided MasterRenderScene with the provided SceneContext
-    void render_scene(MasterRenderScene& render_scene, const SceneContext& scene_context);
+    /// Render the provided MasterRenderScene with the provided SceneContext and Camera
+    void render_scene(MasterRenderScene& render_scene, const SceneContext& scene_context, const CameraInterface& camera);
+
+    /// Returns a reference to the skybox renderer, so scenes can load cubemaps into it.
+    SkyboxRenderer& get_skybox_renderer();
     /// Synchronise the framerate if enabled.
     void sync();
 
