@@ -5,6 +5,7 @@
 #include "EntityRenderer.h"
 #include "EmissiveEntityRenderer.h"
 #include "SkyboxRenderer.h"
+#include "PostProcessingRenderer.h"
 #include "rendering/scene/MasterRenderScene.h"
 #include "system_interfaces/WindowManager.h"
 #include "rendering/cameras/CameraInterface.h"
@@ -16,6 +17,7 @@ class MasterRenderer {
     AnimatedEntityRenderer::AnimatedEntityRenderer animated_entity_renderer;
     EmissiveEntityRenderer::EmissiveEntityRenderer emissive_entity_renderer;
     SkyboxRenderer skybox_renderer;
+    PostProcessingRenderer post_processing_renderer;
     SyncManager sync_manager;
 
     struct RenderSettings {
