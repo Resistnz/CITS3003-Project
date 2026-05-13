@@ -20,6 +20,8 @@ uniform sampler2D normal_map_texture;
 
 uniform vec3 ws_view_position;
 
+uniform float uv_scale;
+
 
 
 // Material properties
@@ -42,10 +44,11 @@ layout (std140) uniform DirectionalLightArray {
 #endif
 
 void main() {
+    vec2 scaled_uv = frag_in.texture_coordinate * uv_scale;
     vec3 ws_view_dir = normalize(ws_view_position - frag_in.ws_position);
 
     // Sample normal map and transform it into world space
-    vec3 tangent_normal = texture(normal_map_texture, frag_in.texture_coordinate).rgb;
+    vec3 tangent_normal = texture(normal_map_texture, scaled_uv).rgb;
     tangent_normal = normalize(tangent_normal * 2.0 - 1.0); //
     vec3 ws_normal = normalize(frag_in.TBN * tangent_normal); // Ensure the normal is normalized, as it was was previously lost when interpolated
     
@@ -64,7 +67,7 @@ void main() {
     );
 
     // Resolve the per vertex lighting with per fragment texture sampling.
-    vec3 resolved_lighting = resolve_textured_light_calculation(lighting_result, diffuse_texture, specular_map_texture, frag_in.texture_coordinate);
+    vec3 resolved_lighting = resolve_textured_light_calculation(lighting_result, diffuse_texture, specular_map_texture, scaled_uv);
 
     out_colour = vec4(resolved_lighting, 1.0f);
     out_colour.rgb = pow(out_colour.rgb, vec3(inverse_gamma));

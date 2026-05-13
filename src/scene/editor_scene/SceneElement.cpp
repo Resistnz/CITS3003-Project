@@ -120,6 +120,7 @@ void EditorScene::LitMaterialComponent::add_material_imgui_edit_section(MasterRe
     ImGui::Text("Material");
 
     // Add UI controls here
+    material_changed |= ImGui::DragFloat("UV Scale", &material.uv_scale, 0.05f, 0.1f, 100.0f);
 
     ImGui::Spacing();
     if (material_changed) {
@@ -133,6 +134,9 @@ void EditorScene::LitMaterialComponent::update_material_from_json(const json& js
     material.specular_tint = m["specular_tint"];
     material.ambient_tint = m["ambient_tint"];
     material.shininess = m["shininess"];
+    if (m.contains("uv_scale")) {
+        material.uv_scale = m["uv_scale"];
+    }
 }
 
 json EditorScene::LitMaterialComponent::material_into_json() const {
@@ -141,6 +145,7 @@ json EditorScene::LitMaterialComponent::material_into_json() const {
         {"specular_tint", material.specular_tint},
         {"ambient_tint", material.ambient_tint},
         {"shininess", material.shininess},
+        {"uv_scale", material.uv_scale},
     }};
 }
 
