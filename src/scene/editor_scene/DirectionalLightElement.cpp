@@ -64,7 +64,8 @@ void EditorScene::DirectionalLightElement::add_imgui_edit_section(MasterRenderSc
     ImGui::Text("Local Transformation");
     bool transformUpdated = false;
     transformUpdated |= ImGui::DragFloat3("Translation", &position[0], 0.01f);
-    transformUpdated |= ImGui::DragFloat3("Rotation", &direction[0], 0.5f);
+    transformUpdated |= ImGui::DragFloat("Pitch", &direction.x, 0.5f);
+    transformUpdated |= ImGui::DragFloat("Yaw", &direction.y, 0.5f);
 
     ImGui::DragDisableCursor(scene_context.window);
     
