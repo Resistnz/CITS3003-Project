@@ -32,6 +32,7 @@ uniform vec3 ambient_tint;
 uniform float shininess;
 uniform float depth;
 
+
 // Light Data
 #if NUM_PL > 0
 layout (std140) uniform PointLightArray {
@@ -45,11 +46,34 @@ layout (std140) uniform DirectionalLightArray {
 };
 #endif
 
-vec2 ParallaxMapping(vec2 uv, vec3 view_dir){
-    float height = depth * texture(depth_map_texture, uv).r; // sample height from red channel, monochrome texture
-    vec2 p = view_dir.xy / view_dir.z * height; // calculate the parallax offset, scale it by the height
-    return uv - p;
+vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
+{ 
+    // number of depth layers
+    const float minLayers = 8.0;
+    const float maxLayers = 80.0;
+    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));      // calculate the size of each layer
+    float layerDepth = 1.0 / numLayers;
+    // depth of current layer
+    float currentLayerDepth = 0.0;
+    // the amount to shift the texture coordinates per layer (from vector P)
+    vec2 P = viewDir.xy * -depth; 
+    vec2 deltaTexCoords = P / numLayers;
+    vec2  currentTexCoords     = texCoords;
+    float currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;
+    
+    while(currentLayerDepth < currentDepthMapValue)
+    {
+        // shift texture coordinates along direction of P
+        currentTexCoords -= deltaTexCoords;
+        // get depthmap value at current texture coordinates
+        currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;  
+        // get depth of next layer
+        currentLayerDepth += layerDepth;  
+    }
+
+    return currentTexCoords;
 }
+    
 
 void main() {
     vec2 scaled_uv = frag_in.texture_coordinate * uv_scale;

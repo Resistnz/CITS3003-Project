@@ -1,0 +1,90 @@
+[
+    {
+        "depth_map_texture": {
+            "filename": "plank_flooring_03_disp_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "plank_flooring_03_diff_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                -0.009999999776482582,
+                0.0
+            ],
+            "scale": [
+                10.0,
+                1.0,
+                10.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 103.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 3.200000047683716
+        },
+        "model": "double_plane.obj",
+        "name": "Ground Plane",
+        "normal_map_texture": {
+            "filename": "plank_flooring_03_nor_gl_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "plank_flooring_03_rough_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "colour": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        "direction": [
+            56.5,
+            -31.5,
+            -0.0375090017914772
+        ],
+        "enabled": true,
+        "label": "Directional Light",
+        "name": "New Directional Light",
+        "position": [
+            0.0,
+            1.0,
+            0.0
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    }
+]
