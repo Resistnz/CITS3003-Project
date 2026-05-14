@@ -51,6 +51,8 @@ void EntityRenderer::EntityRenderer::render(const RenderScene& render_scene, con
         glBindTexture(GL_TEXTURE_2D, entity->render_data.specular_map_texture->get_texture_id());
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, entity->render_data.normal_map_texture->get_texture_id()); // Add normal map to shader
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, entity->render_data.depth_map_texture->get_texture_id());
 
         glBindVertexArray(entity->model->get_vao());
         glDrawElementsBaseVertex(GL_TRIANGLES, entity->model->get_index_count(), GL_UNSIGNED_INT, nullptr, entity->model->get_vertex_offset());

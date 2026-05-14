@@ -20,10 +20,12 @@ void BaseLitEntityShader::get_uniforms_set_bindings() {
     ambient_tint_location = get_uniform_location("ambient_tint");
     shininess_location = get_uniform_location("shininess");
     uv_scale_location = get_uniform_location("uv_scale");
+    depth_location = get_uniform_location("depth");
     // Texture sampler bindings
     set_binding("diffuse_texture", 0);
     set_binding("specular_map_texture", 1);
     set_binding("normal_map_texture", 2);
+    set_binding("depth_map_texture", 3);
     // Uniform block bindings
     set_block_binding("PointLightArray", POINT_LIGHT_BINDING);
     set_block_binding("DirectionalLightArray", DIRECTIONAL_LIGHT_BINDING);
@@ -44,6 +46,7 @@ void BaseLitEntityShader::set_instance_data(const BaseLitEntityInstanceData& ins
     glProgramUniform3fv(id(), ambient_tint_location, 1, &scaled_ambient_tint[0]);
     glProgramUniform1fv(id(), shininess_location, 1, &entity_material.shininess);
     glProgramUniform1fv(id(), uv_scale_location, 1, &entity_material.uv_scale);
+    glProgramUniform1fv(id(), depth_location, 1, &entity_material.depth);
 }
 
 void BaseLitEntityShader::set_point_lights(const std::vector<PointLight>& point_lights) {

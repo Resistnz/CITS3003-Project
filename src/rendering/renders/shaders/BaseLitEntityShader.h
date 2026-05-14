@@ -25,6 +25,7 @@ struct BaseLitEntityMaterial {
     glm::vec4 ambient_tint;
     float shininess;
     float uv_scale = 1.0f;
+    float depth = 0.0f;
 };
 
 struct BaseLitEntityInstanceData : public BaseEntityInstanceData {
@@ -35,12 +36,13 @@ struct BaseLitEntityInstanceData : public BaseEntityInstanceData {
 };
 
 struct BaseLitEntityRenderData {
-    BaseLitEntityRenderData(std::shared_ptr<TextureHandle> diffuse_texture, std::shared_ptr<TextureHandle> specular_map_texture, std::shared_ptr<TextureHandle> normal_map_texture)
-        : diffuse_texture(std::move(diffuse_texture)), specular_map_texture(std::move(specular_map_texture)), normal_map_texture(std::move(normal_map_texture)) {}
+    BaseLitEntityRenderData(std::shared_ptr<TextureHandle> diffuse_texture, std::shared_ptr<TextureHandle> specular_map_texture, std::shared_ptr<TextureHandle> normal_map_texture, std::shared_ptr<TextureHandle> depth_map_texture)
+        : diffuse_texture(std::move(diffuse_texture)), specular_map_texture(std::move(specular_map_texture)), normal_map_texture(std::move(normal_map_texture)), depth_map_texture(std::move(depth_map_texture)) {}
 
     std::shared_ptr<TextureHandle> diffuse_texture;
     std::shared_ptr<TextureHandle> specular_map_texture;
     std::shared_ptr<TextureHandle> normal_map_texture;
+    std::shared_ptr<TextureHandle> depth_map_texture;
 };
 
 using BaseLitEntityGlobalData = BaseEntityGlobalData;
@@ -57,6 +59,7 @@ protected:
     int ambient_tint_location{};
     int shininess_location{};
     int uv_scale_location{};
+    int depth_location{};
 
     static const uint POINT_LIGHT_BINDING = 0;
     static const uint DIRECTIONAL_LIGHT_BINDING = 1;
