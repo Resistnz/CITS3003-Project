@@ -1,0 +1,174 @@
+[
+    {
+        "depth_map_texture": {
+            "filename": "plaster_stone_wall_02_disp_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "plank_flooring_03_diff_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                -0.009999999776482582,
+                0.0
+            ],
+            "scale": [
+                10.0,
+                1.0,
+                10.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 128.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "double_plane.obj",
+        "name": "Ground Plane",
+        "normal_map_texture": {
+            "filename": "plank_flooring_03_nor_gl_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "plank_flooring_03_rough_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "colour": [
+            0.9852941036224365,
+            0.9426775574684143,
+            0.8403978943824768,
+            0.25
+        ],
+        "direction": [
+            -60.0,
+            48.5,
+            8.449005776381624e-39
+        ],
+        "enabled": true,
+        "label": "Directional Light",
+        "name": "New Directional Light",
+        "position": [
+            0.0,
+            1.0,
+            0.0
+        ],
+        "visible": false,
+        "visual_scale": 1.0
+    },
+    {
+        "attenuation": 0.5,
+        "colour": [
+            1.0,
+            0.04901963472366333,
+            0.04901963472366333,
+            1.0
+        ],
+        "enabled": true,
+        "label": "Point Light",
+        "name": "Default Point Light",
+        "position": [
+            1.0,
+            2.0,
+            2.0199999809265137
+        ],
+        "visible": false,
+        "visual_scale": 1.0
+    },
+    {
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "propane_tank_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -0.7799999713897705,
+                0.0,
+                0.07000000029802322
+            ],
+            "scale": [
+                4.0,
+                4.0,
+                4.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "propane_tank_4k.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "propane_tank_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "propane_tank_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    }
+]

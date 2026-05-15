@@ -16,9 +16,9 @@ struct PostProcessSettings {
     float vignette_extent = 1.1f;
 
     // Color Grading
-    float exposure = 1.3f;
-    float contrast = 1.2f;
-    float saturation = 1.3f;
+    float exposure = 1.5f;
+    float contrast = 1.35f;
+    float saturation = 1.4f;
 
     // Film Grain
     float film_grain_strength = 0.05f;
