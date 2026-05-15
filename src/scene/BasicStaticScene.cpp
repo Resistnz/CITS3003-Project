@@ -47,7 +47,8 @@ void BasicStaticScene::open(const SceneContext& scene_context) {
         EntityRenderer::RenderData{
             default_white_texture,
             default_white_texture,
-            default_normal_map_texture
+            default_normal_map_texture,
+            default_black_texture
         }
     );
 
@@ -66,7 +67,8 @@ void BasicStaticScene::open(const SceneContext& scene_context) {
         EntityRenderer::RenderData{
             texture,
             specular_map,
-            default_normal_map_texture
+            default_normal_map_texture,
+            default_black_texture
         }
     );
 
@@ -99,7 +101,8 @@ void BasicStaticScene::open(const SceneContext& scene_context) {
         EntityRenderer::RenderData{
             cone_diffuse,
             cone_specular,
-            default_normal_map_texture
+            default_normal_map_texture,
+            default_black_texture
         }
     );
 

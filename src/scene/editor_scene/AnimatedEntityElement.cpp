@@ -17,7 +17,8 @@ std::unique_ptr<EditorScene::AnimatedEntityElement> EditorScene::AnimatedEntityE
         AnimatedEntityRenderer::RenderData{
             scene_context.texture_loader.default_white_texture(),
             scene_context.texture_loader.default_white_texture(),
-            scene_context.texture_loader.default_normal_map_texture()
+            scene_context.texture_loader.default_normal_map_texture(),
+            scene_context.texture_loader.default_black_texture()
         }
     );
 
@@ -43,6 +44,8 @@ std::unique_ptr<EditorScene::AnimatedEntityElement> EditorScene::AnimatedEntityE
     new_entity->rendered_entity->mesh_hierarchy = scene_context.model_loader.load_hierarchy_from_file<AnimatedEntityRenderer::VertexData>(j["model"]);
     new_entity->rendered_entity->render_data.diffuse_texture = texture_from_json(scene_context, j["diffuse_texture"]);
     new_entity->rendered_entity->render_data.specular_map_texture = texture_from_json(scene_context, j["specular_map_texture"]);
+    new_entity->rendered_entity->render_data.normal_map_texture = texture_from_json(scene_context, j["normal_map_texture"]);
+    new_entity->rendered_entity->render_data.depth_map_texture = texture_from_json(scene_context, j["depth_map_texture"]);
 
     json animation_parameters = j["animation_parameters"];
     new_entity->animation_parameters.animation_id = animation_parameters["animation_id"];
@@ -67,6 +70,8 @@ json EditorScene::AnimatedEntityElement::into_json() const {
         local_transform_into_json(),
         material_into_json(),
         {"model", rendered_entity->mesh_hierarchy->filename.value()},
+        {"normal_map_texture", texture_to_json(rendered_entity->render_data.normal_map_texture)},
+        {"depth_map_texture", texture_to_json(rendered_entity->render_data.depth_map_texture)},
         {"diffuse_texture", texture_to_json(rendered_entity->render_data.diffuse_texture)},
         {"specular_map_texture", texture_to_json(rendered_entity->render_data.specular_map_texture)},
         {"animation_parameters", {
@@ -95,12 +100,16 @@ void EditorScene::AnimatedEntityElement::add_imgui_edit_section(MasterRenderScen
     }
     scene_context.texture_loader.add_imgui_texture_selector("Diffuse Texture", rendered_entity->render_data.diffuse_texture);
     scene_context.texture_loader.add_imgui_texture_selector("Specular Map", rendered_entity->render_data.specular_map_texture, false);
+    scene_context.texture_loader.add_imgui_texture_selector("Normal Map", rendered_entity->render_data.normal_map_texture, false);
+    scene_context.texture_loader.add_imgui_texture_selector("Depth Map", rendered_entity->render_data.depth_map_texture, false);
+
     ImGui::Spacing();
     transformUpdated |= ImGui::ColorEdit3("Diffuse Tint", &material.diffuse_tint[0]);
     transformUpdated |= ImGui::ColorEdit3("Specular Tint", &material.specular_tint[0]);
     transformUpdated |= ImGui::ColorEdit3("Ambient Tint", &material.ambient_tint[0]);
 
     transformUpdated |= ImGui::DragFloat("Shininess", &material.shininess, 1.0f, 0.0f, 1000.0f);
+    transformUpdated |= ImGui::DragFloat("Depth", &material.depth, 0.01f, 0.0f, 0.1f);
     if (transformUpdated) {
         update_instance_data();
     }

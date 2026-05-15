@@ -16,6 +16,7 @@ uniform float inverse_gamma;
 uniform sampler2D diffuse_texture;
 uniform sampler2D specular_map_texture;
 uniform sampler2D normal_map_texture;
+uniform sampler2D depth_map_texture;
 
 uniform float uv_scale;
 
@@ -26,6 +27,7 @@ uniform vec3 diffuse_tint;
 uniform vec3 specular_tint;
 uniform vec3 ambient_tint;
 uniform float shininess;
+uniform float depth;
 
 // Light Data
 #if NUM_PL > 0
@@ -40,14 +42,47 @@ layout (std140) uniform DirectionalLightArray {
 };
 #endif
 
+vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
+{ 
+    // number of depth layers
+    const float minLayers = 8.0;
+    const float maxLayers = 80.0;
+    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));      // calculate the size of each layer
+    float layerDepth = 1.0 / numLayers;
+    // depth of current layer
+    float currentLayerDepth = 0.0;
+    // the amount to shift the texture coordinates per layer (from vector P)
+    vec2 P = viewDir.xy * -depth; 
+    vec2 deltaTexCoords = P / numLayers;
+    vec2  currentTexCoords     = texCoords;
+    float currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;
+    
+    while(currentLayerDepth < currentDepthMapValue)
+    {
+        // shift texture coordinates along direction of P
+        currentTexCoords -= deltaTexCoords;
+        // get depthmap value at current texture coordinates
+        currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;  
+        // get depth of next layer
+        currentLayerDepth += layerDepth;  
+    }
+
+    return currentTexCoords;
+}
+
 void main() {
     vec2 scaled_uv = frag_in.texture_coordinate * uv_scale;
 
     vec3 ws_view_dir = normalize(ws_view_position - frag_in.ws_position);
 
+    vec3 ts_view_dir = normalize(transpose(frag_in.TBN) * ws_view_dir);
+    vec2 parallax_uv = ParallaxMapping(scaled_uv, ts_view_dir);
     
+    if(parallax_uv.x > uv_scale || parallax_uv.y > uv_scale || parallax_uv.x < 0.0 || parallax_uv.y < 0.0)
+        discard;
+
     // Sample normal map and transform it into world space
-    vec3 tangent_normal = texture(normal_map_texture, scaled_uv).rgb;
+    vec3 tangent_normal = texture(normal_map_texture, parallax_uv).rgb;
     tangent_normal = normalize(tangent_normal * 2.0 - 1.0); //
     vec3 ws_normal = normalize(frag_in.TBN * tangent_normal); // Ensure the normal is normalized, as it was was previously lost when interpolated
 
@@ -65,7 +100,7 @@ void main() {
     );
 
     // Combine textures with the fragment lighting result
-    vec3 resolved_lighting = resolve_textured_light_calculation(lighting_result, diffuse_texture, specular_map_texture, scaled_uv);
+    vec3 resolved_lighting = resolve_textured_light_calculation(lighting_result, diffuse_texture, specular_map_texture, parallax_uv);
 
     out_colour = vec4(resolved_lighting, 1.0f);
     out_colour.rgb = pow(out_colour.rgb, vec3(inverse_gamma));
