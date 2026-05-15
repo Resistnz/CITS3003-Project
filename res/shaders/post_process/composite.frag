@@ -2,7 +2,6 @@
 out vec4 FragColor;
 in vec2 TexCoords;
 
-// Toggles
 uniform sampler2D sceneTexture;
 uniform bool enableVignette;
 uniform bool enableColorGrading;
@@ -31,9 +30,9 @@ float noise(vec2 uv) {
 void main() {
     vec3 color = texture(sceneTexture, TexCoords).rgb;
     
-    // Colour Grading
+    // these formulas come from https://learnopengl.com/Advanced-Lighting/HDR
     if (enableColorGrading) {
-        // Exposure mapping
+        // Exposure
         color = vec3(1.0) - exp(-color * exposure);
         
         // Contrast
@@ -47,16 +46,15 @@ void main() {
     // Vignette
     if (enableVignette) {
         vec2 dist = TexCoords - 0.5;
-        // Adjust for aspect ratio roughly if we want, but simple distance works too
         float vFactor = smoothstep(vignetteExtent, vignetteExtent - vignetteStrength, length(dist));
         color *= vFactor;
     }
 
     // Film Grain
     if (enableFilmGrain) {
-        // Add time to texture coordinates to animate the noise
         float n = noise(TexCoords + vec2(time, -time));
-        // Map noise from [0, 1] to [-1, 1]
+
+        // Map noise from [0, 1] over to [-1, 1]
         n = n * 2.0 - 1.0;
         color += color * n * filmGrainStrength;
     }
