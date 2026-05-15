@@ -98,17 +98,18 @@ void EditorScene::AnimatedEntityElement::add_imgui_edit_section(MasterRenderScen
         animation_parameters.animation_id = NONE_ANIMATION;
         rendered_entity->animation_time_seconds = 0.0;
     }
-    scene_context.texture_loader.add_imgui_texture_selector("Normal Map", rendered_entity->render_data.normal_map_texture, false);
-    scene_context.texture_loader.add_imgui_texture_selector("Depth Map", rendered_entity->render_data.depth_map_texture, false);
     scene_context.texture_loader.add_imgui_texture_selector("Diffuse Texture", rendered_entity->render_data.diffuse_texture);
     scene_context.texture_loader.add_imgui_texture_selector("Specular Map", rendered_entity->render_data.specular_map_texture, false);
+    scene_context.texture_loader.add_imgui_texture_selector("Normal Map", rendered_entity->render_data.normal_map_texture, false);
+    scene_context.texture_loader.add_imgui_texture_selector("Depth Map", rendered_entity->render_data.depth_map_texture, false);
+
     ImGui::Spacing();
     transformUpdated |= ImGui::ColorEdit3("Diffuse Tint", &material.diffuse_tint[0]);
     transformUpdated |= ImGui::ColorEdit3("Specular Tint", &material.specular_tint[0]);
     transformUpdated |= ImGui::ColorEdit3("Ambient Tint", &material.ambient_tint[0]);
 
     transformUpdated |= ImGui::DragFloat("Shininess", &material.shininess, 1.0f, 0.0f, 1000.0f);
-    transformUpdated |= ImGui::SliderFloat("Depth", &material.depth, 0.0f, 1.0f);
+    transformUpdated |= ImGui::DragFloat("Depth", &material.depth, 1.0f, 0.0f, 0.1f);
     if (transformUpdated) {
         update_instance_data();
     }
