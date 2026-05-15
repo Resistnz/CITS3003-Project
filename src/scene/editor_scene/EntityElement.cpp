@@ -91,7 +91,7 @@ void EditorScene::EntityElement::add_imgui_edit_section(MasterRenderScene& rende
     transformUpdated |= ImGui::ColorEdit3("Ambient Tint", &material.ambient_tint[0]);
 
     transformUpdated |= ImGui::DragFloat("Shininess", &material.shininess, 1.0f, 0.0f, 1000.0f);
-    transformUpdated |= ImGui::DragFloat("Depth", &material.depth, 1.0f, 0.0f, 0.1f);
+    transformUpdated |= ImGui::DragFloat("Depth", &material.depth, 0.01f, 0.0f, 0.1f);
     if (transformUpdated) {
         update_instance_data();
     }
