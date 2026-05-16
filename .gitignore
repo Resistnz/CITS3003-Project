@@ -9,3 +9,6 @@ cits3003_project.exe
 .DS*
 config/imgui.ini
 config/imgui.ini
+nyc_tiles_l5
+download_tiles.ps1
+stitch_faces.py
