@@ -137,6 +137,9 @@ void EditorScene::LitMaterialComponent::update_material_from_json(const json& js
     if (m.contains("uv_scale")) {
         material.uv_scale = m["uv_scale"];
     }
+    if (m.contains("depth")) {
+        material.depth = m["depth"];
+    }
 }
 
 json EditorScene::LitMaterialComponent::material_into_json() const {
@@ -146,6 +149,7 @@ json EditorScene::LitMaterialComponent::material_into_json() const {
         {"ambient_tint", material.ambient_tint},
         {"shininess", material.shininess},
         {"uv_scale", material.uv_scale},
+        {"depth", material.depth},
     }};
 }
 
