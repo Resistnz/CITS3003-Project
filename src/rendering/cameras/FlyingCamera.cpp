@@ -108,7 +108,7 @@ void FlyingCamera::update(const Window& window, float dt, bool controlsEnabled) 
 void FlyingCamera::reset() {
     position = init_position;
     velocity = glm::vec3{0.0f};
-    pitch = init_pitch;
+    pitch = -init_pitch;
     yaw = init_yaw;
     fov = init_fov;
     near = init_near;
