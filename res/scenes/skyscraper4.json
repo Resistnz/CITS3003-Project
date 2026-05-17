@@ -1,0 +1,1236 @@
+[
+    {
+        "colour": [
+            1.0,
+            0.9844290614128113,
+            0.8235294222831726,
+            1.0
+        ],
+        "direction": [
+            53.5,
+            114.5,
+            0.0
+        ],
+        "enabled": true,
+        "label": "Directional Light",
+        "name": "Sunlight",
+        "position": [
+            0.0,
+            6.519999980926514,
+            0.0
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    },
+    {
+        "colour": [
+            0.18622645735740662,
+            0.34930717945098877,
+            0.6127451062202454,
+            0.20000000298023224
+        ],
+        "direction": [
+            -49.5,
+            -214.0,
+            2.396220373995437e-43
+        ],
+        "enabled": true,
+        "label": "Directional Light",
+        "name": "Sky Bounce Light",
+        "position": [
+            0.0,
+            4.21999979019165,
+            0.0
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    },
+    {
+        "depth_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "L_obj_7000.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                2.3387410640716553,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -1.1799999475479126,
+                1.1100000143051147,
+                -3.319999933242798
+            ],
+            "scale": [
+                0.10000000894069672,
+                0.10000000894069672,
+                0.10000000894069672
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "L_obj_7000.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "mesh1NormalsMap7000.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "attenuation": 0.2,
+        "colour": [
+            1.0,
+            0.38235294818878174,
+            0.0,
+            4.019999980926514
+        ],
+        "enabled": true,
+        "label": "Point Light",
+        "name": "New Point Light",
+        "position": [
+            5.130000114440918,
+            1.2100000381469727,
+            5.130000114440918
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    },
+    {
+        "attenuation": 0.2,
+        "colour": [
+            1.0,
+            0.38235294818878174,
+            0.0,
+            4.019999980926514
+        ],
+        "enabled": true,
+        "label": "Point Light",
+        "name": "New Point Light",
+        "position": [
+            -5.130000114440918,
+            1.2100000381469727,
+            5.130000114440918
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    },
+    {
+        "attenuation": 0.2,
+        "colour": [
+            1.0,
+            0.38235294818878174,
+            0.0,
+            4.019999980926514
+        ],
+        "enabled": true,
+        "label": "Point Light",
+        "name": "New Point Light",
+        "position": [
+            5.130000114440918,
+            1.2100000381469727,
+            -5.130000114440918
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    },
+    {
+        "attenuation": 0.2,
+        "colour": [
+            1.0,
+            0.38235294818878174,
+            0.0,
+            4.019999980926514
+        ],
+        "enabled": true,
+        "label": "Point Light",
+        "name": "New Point Light",
+        "position": [
+            -5.130000114440918,
+            1.2100000381469727,
+            -5.130000114440918
+        ],
+        "visible": true,
+        "visual_scale": 1.0
+    },
+    {
+        "depth_map_texture": {
+            "filename": "bollard_Roughness.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "bollard_Albedo.png",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                5.125,
+                0.1899999976158142,
+                5.125
+            ],
+            "scale": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "bollard.obj",
+        "name": "Bollard",
+        "normal_map_texture": {
+            "filename": "bollard_Normal.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "bollard_Metallic.png",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "bollard_Roughness.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "bollard_Albedo.png",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -5.125,
+                0.1899999976158142,
+                5.125
+            ],
+            "scale": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "bollard.obj",
+        "name": "Bollard",
+        "normal_map_texture": {
+            "filename": "bollard_Normal.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "bollard_Metallic.png",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "bollard_Roughness.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "bollard_Albedo.png",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -5.125,
+                0.1899999976158142,
+                -5.125
+            ],
+            "scale": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "bollard.obj",
+        "name": "Bollard",
+        "normal_map_texture": {
+            "filename": "bollard_Normal.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "bollard_Metallic.png",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "bollard_Roughness.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "bollard_Albedo.png",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                5.125,
+                0.1899999976158142,
+                -5.125
+            ],
+            "scale": [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "bollard.obj",
+        "name": "Bollard",
+        "normal_map_texture": {
+            "filename": "bollard_Normal.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "bollard_Metallic.png",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "propane_tank_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.6632251143455505,
+                0.0
+            ],
+            "position": [
+                1.4600000381469727,
+                0.10999999940395355,
+                -3.059999942779541
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "propane_tank_4k.obj",
+        "name": "propane",
+        "normal_map_texture": {
+            "filename": "propane_tank_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "propane_tank_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "church_bricks_03_disp_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "church_bricks_03_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -4.75,
+                1.2699999809265137,
+                0.0
+            ],
+            "scale": [
+                1.2599999904632568,
+                1.2599999904632568,
+                1.2599999904632568
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.6540000438690186
+        },
+        "model": "wall.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "church_bricks_03_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "church_bricks_03_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "animation_parameters": {
+            "animation_id": 0,
+            "animation_time_seconds": 14.966899099999864,
+            "loop": true,
+            "paused": false,
+            "speed": 1.0
+        },
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "Ch17_1001_Diffuse.png",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Animated Entity",
+        "local_transform": {
+            "euler_rotation": [
+                4.71238899230957,
+                0.0,
+                4.991641521453857
+            ],
+            "position": [
+                0.0,
+                0.10000000149011612,
+                2.619999885559082
+            ],
+            "scale": [
+                0.010999999940395355,
+                0.010999999940395355,
+                0.010999999940395355
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "dancing pete.x",
+        "name": "pete",
+        "normal_map_texture": {
+            "filename": "Ch17_1001_Normal.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "Ch17_1001_Glossiness.png",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "propane_tank_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                3.9793505668640137,
+                1.5707963705062866
+            ],
+            "position": [
+                1.399999976158142,
+                0.25,
+                -2.4600000381469727
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "propane_tank_4k.obj",
+        "name": "propane",
+        "normal_map_texture": {
+            "filename": "propane_tank_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "propane_tank_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "rebar_reinforced_concrete_disp_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "rebar_reinforced_concrete_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                -4.96999979019165,
+                0.0
+            ],
+            "scale": [
+                5.0,
+                5.0,
+                5.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 2.9000000953674316
+        },
+        "model": "cube.obj",
+        "name": "base",
+        "normal_map_texture": {
+            "filename": "rebar_reinforced_concrete_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "rebar_reinforced_concrete_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "asphalt_02_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                -0.17000000178813934,
+                0.0
+            ],
+            "scale": [
+                1.350000023841858,
+                1.350000023841858,
+                1.350000023841858
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                0.38235294818878174,
+                0.38235294818878174,
+                0.38235294818878174,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 22.450000762939453
+        },
+        "model": "edge.obj",
+        "name": "edge",
+        "normal_map_texture": {
+            "filename": "asphalt_02_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "asphalt_02_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "asphalt_02_disp_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "asphalt_02_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                0.10000000149011612,
+                0.0
+            ],
+            "scale": [
+                5.0,
+                5.0,
+                5.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.7000000476837158
+        },
+        "model": "double_plane.obj",
+        "name": "top",
+        "normal_map_texture": {
+            "filename": "asphalt_02_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "asphalt_02_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "car diff.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                0.0,
+                0.9900000095367432,
+                -1.1799999475479126
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 13.0,
+            "specular_tint": [
+                0.07352942228317261,
+                0.07352942228317261,
+                0.07352942228317261,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "car.obj",
+        "name": "car",
+        "normal_map_texture": {
+            "filename": "car normal.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "utility_box_02_diff_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                1.5707963705062866,
+                0.0
+            ],
+            "position": [
+                -3.7899999618530273,
+                0.09000000357627869,
+                0.0
+            ],
+            "scale": [
+                1.3899999856948853,
+                1.3899999856948853,
+                1.3899999856948853
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "utility_box_02_2k.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "utility_box_02_nor_gl_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "utility_box_02_rough_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "concrete_road_barrier_disp_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "concrete_road_barrier_diff_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                6.161012172698975,
+                0.0
+            ],
+            "position": [
+                0.6100000143051147,
+                0.07000000029802322,
+                -4.03000020980835
+            ],
+            "scale": [
+                1.2599999904632568,
+                1.2599999904632568,
+                1.2599999904632568
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "concrete_road_barrier_2k.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "concrete_road_barrier_nor_gl_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "concrete_road_barrier_rough_2k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "trash_bin_G.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "trash_bin_D.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                6.248278617858887,
+                3.560471534729004,
+                0.01745329238474369
+            ],
+            "position": [
+                -4.300000190734863,
+                0.0,
+                4.159999847412109
+            ],
+            "scale": [
+                1.2999999523162842,
+                1.2999999523162842,
+                1.2999999523162842
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "LP.obj",
+        "name": "Bin",
+        "normal_map_texture": {
+            "filename": "trash_bin_N.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "[WHITE]",
+            "is_flipped": false,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
+            "filename": "cone_specular.png",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "cone2.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.01745329238474369,
+                4.8869218826293945,
+                6.230825424194336
+            ],
+            "position": [
+                -4.139999866485596,
+                0.46000000834465027,
+                0.949999988079071
+            ],
+            "scale": [
+                0.019999999552965164,
+                0.019999999552965164,
+                0.019999999552965164
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "cone2_obj.obj",
+        "name": "Cone",
+        "normal_map_texture": {
+            "filename": "cone_retro_map.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "cone_specular.png",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    }
+]
