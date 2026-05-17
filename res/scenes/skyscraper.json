@@ -89,6 +89,71 @@
     },
     {
         "depth_map_texture": {
+            "filename": "church_bricks_03_disp_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "church_bricks_03_diff_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Entity",
+        "local_transform": {
+            "euler_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "position": [
+                -5.050000190734863,
+                1.2699999809265137,
+                0.0
+            ],
+            "scale": [
+                1.2599999904632568,
+                1.2599999904632568,
+                1.2599999904632568
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.6540000438690186
+        },
+        "model": "wall.obj",
+        "name": "New Entity",
+        "normal_map_texture": {
+            "filename": "church_bricks_03_nor_gl_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "church_bricks_03_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "depth_map_texture": {
             "filename": "[BLACK]",
             "is_flipped": false,
             "is_srgb": false

@@ -46,34 +46,52 @@ layout (std140) uniform DirectionalLightArray {
 };
 #endif
 
+// Parallax mapping function adapted from learnopengl.com, with some adjustments to the layer count and depth offset.
 vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
 { 
-    // number of depth layers
+    // number of depth layers - these are spaced between the surface and the maximum depth to fill out the depth effect.
     const float minLayers = 8.0;
     const float maxLayers = 120.0;
-    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));      // calculate the size of each layer
-    float layerDepth = 1.0 / numLayers;
-    // depth of current layer
+    // adjust the number of layers based on the view angle to optimise performance when less noticeable
+    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));     
+
     float currentLayerDepth = 0.0;
-    // the amount to shift the texture coordinates per layer (from vector P)
+
+    // shift texture coordinates based on depth
     vec2 P = viewDir.xy * depth;
     vec2 deltaTexCoords = P / numLayers;
-    vec2  currentTexCoords     = texCoords;
+    vec2  currentTexCoords = texCoords;
     float currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
+
+
 
     while(currentLayerDepth < currentDepthMapValue)
     {
         // shift texture coordinates along direction of P
         currentTexCoords -= deltaTexCoords;
-        // get depthmap value at current texture coordinates
+        // samples the d
         currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
-        // get depth of next layer
+        // get depth of next layer and repeat for all
         currentLayerDepth += layerDepth;  
     }
 
-    return currentTexCoords;
+    // Parallax occlusion mapping from learnopengl.com
+    vec2 prevTexCoords = currentTexCoords + deltaTexCoords;
+
+    float afterDepth = currentDepthMapValue - currentLayerDepth;
+    float beforeDepth = 1.0 - texture(depth_map_texture, prevTexCoords).r - currentLayerDepth + layerDepth;
+
+    float weight = afterDepth / (afterDepth - beforeDepth);
+    vec2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
+
+    return finalTexCoords;
+    //return currentTexCoords;
 }
     
+// UVs are initially scaled to tile textures
+// Parallax mapping then offsets these UVs based on the view angle and depth map
+// The normals are then sampled using the parallax UVs and perturbed by the normal map
+// Finally the lighting is calculated using the perturbed normals and parallax UVs for texture sampling, giving a convincing depth effect
 
 void main() {
     vec2 scaled_uv = frag_in.texture_coordinate * uv_scale;
@@ -99,12 +117,13 @@ void main() {
         ,point_lights
         #endif
 
+        // repeat for directional
         #if NUM_DL > 0
         ,direction_lights
         #endif
     );
 
-    // Resolve the per vertex lighting with per fragment texture sampling.
+    // Resolve the per vertex lighting with per fragment texture sampling. - swapped from scaled uv to parallax uv for texture sampling for depth effect
     vec3 resolved_lighting = resolve_textured_light_calculation(lighting_result, diffuse_texture, specular_map_texture, parallax_uv);
 
     out_colour = vec4(resolved_lighting, 1.0f);
