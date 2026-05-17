@@ -46,36 +46,33 @@ layout (std140) uniform DirectionalLightArray {
 };
 #endif
 
-// Parallax mapping function adapted from learnopengl.com, with some adjustments to the layer count and depth offset.
+// Parallax occlusion mapping — based on techniques from learnopengl.com.
+// Layer count scales with view angle and uses a custom depth scale uniform.
 vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
-{ 
-    // number of depth layers - these are spaced between the surface and the maximum depth to fill out the depth effect.
+{
     const float minLayers = 8.0;
     const float maxLayers = 120.0;
-    // adjust the number of layers based on the view angle to optimise performance when less noticeable
-    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));     
+    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));
 
+    float layerDepth = 1.0 / numLayers;
     float currentLayerDepth = 0.0;
 
-    // shift texture coordinates based on depth
     vec2 P = viewDir.xy * depth;
     vec2 deltaTexCoords = P / numLayers;
     vec2  currentTexCoords = texCoords;
     float currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
 
-
-
+    // Step through layers along the view direction until the sampled depth
+    // exceeds the current layer depth, finding the intersection.
     while(currentLayerDepth < currentDepthMapValue)
     {
-        // shift texture coordinates along direction of P
         currentTexCoords -= deltaTexCoords;
-        // samples the d
         currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
-        // get depth of next layer and repeat for all
-        currentLayerDepth += layerDepth;  
+        currentLayerDepth += layerDepth;
     }
 
-    // Parallax occlusion mapping from learnopengl.com
+    // Occlusion interpolation: blend between the two layers straddling the
+    // intersection point for a smoother result without hard layer transitions.
     vec2 prevTexCoords = currentTexCoords + deltaTexCoords;
 
     float afterDepth = currentDepthMapValue - currentLayerDepth;
@@ -85,7 +82,6 @@ vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
     vec2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
 
     return finalTexCoords;
-    //return currentTexCoords;
 }
     
 // UVs are initially scaled to tile textures
