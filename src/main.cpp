@@ -70,9 +70,9 @@ int main() {
         // Faces must be in order: +X, -X, +Y, -Y, +Z, -Z
         try {
             auto cubemap_id = texture_loader.load_cubemap({
-                "skybox/right.jpg",  "skybox/left.jpg",
-                "skybox/top.jpg",    "skybox/bottom.jpg",
-                "skybox/front.jpg",  "skybox/back.jpg"
+                "skybox/nyc_faces_l5/face_r.jpg",  "skybox/nyc_faces_l5/face_l.jpg",
+                "skybox/nyc_faces_l5/face_u.jpg",  "skybox/nyc_faces_l5/face_d.jpg",
+                "skybox/nyc_faces_l5/face_f.jpg",  "skybox/nyc_faces_l5/face_b.jpg"
             });
             master_renderer.get_skybox_renderer().set_cubemap(cubemap_id);
         } catch (const std::exception& e) {
