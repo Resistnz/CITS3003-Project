@@ -66,8 +66,7 @@ int main() {
         // Use the handle of the editor scene to switch to it, making it the starting scene
         scene_manager.switch_scene(editor_scene, scene_context);
 
-        // Load the skybox cubemap textures and give them to the master renderer.
-        // Faces must be in order: +X, -X, +Y, -Y, +Z, -Z
+        // Skybox!!!
         try {
             auto cubemap_id = texture_loader.load_cubemap({
                 "skybox/nyc_faces_l5/face_r.jpg",  "skybox/nyc_faces_l5/face_l.jpg",

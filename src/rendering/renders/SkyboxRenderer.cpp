@@ -2,8 +2,7 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
-// Cube vertex positions for a unit cube centered at the origin.
-// 36 vertices (6 faces * 2 triangles * 3 vertices), no indices needed.
+// Cube vertex positions for a unit cube centered at the origin
 static const float skybox_vertices[] = {
     // Back face
     -1.0f,  1.0f, -1.0f,
@@ -54,8 +53,6 @@ static const float skybox_vertices[] = {
     -1.0f, -1.0f, -1.0f,
 };
 
-// --- SkyboxShader ---
-
 SkyboxRenderer::SkyboxShader::SkyboxShader()
     : ShaderInterface("Skybox", "skybox/vert.glsl", "skybox/frag.glsl",
                        [&]() { get_uniforms_set_bindings(); }) {
@@ -78,10 +75,9 @@ void SkyboxRenderer::SkyboxShader::set_inverse_gamma(float inverse_gamma) {
     glProgramUniform1f(id(), inverse_gamma_location, inverse_gamma);
 }
 
-// --- SkyboxRenderer ---
+
 
 SkyboxRenderer::SkyboxRenderer() : shader() {
-    // Create VAO and VBO for the skybox cube
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
 
@@ -116,11 +112,11 @@ bool SkyboxRenderer::is_loaded() const {
 }
 
 void SkyboxRenderer::render(const glm::mat4& view_matrix, const glm::mat4& projection_matrix, float gamma) {
-    if (!has_cubemap) return; // No skybox texture loaded, skip rendering
+    if (!has_cubemap) return; 
 
-    // Change depth function so the skybox passes the depth test at depth == 1.0
+    // Change depth function so the skybox passes the depth test at depth 1
     glDepthFunc(GL_LEQUAL);
-    // Disable face culling — we are rendering from inside the cube
+
     glDisable(GL_CULL_FACE);
 
     shader.use();
@@ -136,7 +132,6 @@ void SkyboxRenderer::render(const glm::mat4& view_matrix, const glm::mat4& proje
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    // Restore default state
     glEnable(GL_CULL_FACE);
     glDepthFunc(GL_LESS);
 }

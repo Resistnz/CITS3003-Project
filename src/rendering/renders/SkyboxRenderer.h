@@ -6,9 +6,8 @@
 
 #include "rendering/renders/shaders/ShaderInterface.h"
 
-/// A renderer for drawing a cubemap skybox behind all scene geometry.
+// A renderer for drawing a cubemap skybox behind all the scene
 class SkyboxRenderer {
-    /// A simple shader for rendering the skybox cubemap.
     class SkyboxShader : public ShaderInterface {
         int view_matrix_location{};
         int projection_matrix_location{};
@@ -32,14 +31,11 @@ public:
     SkyboxRenderer();
     ~SkyboxRenderer();
 
-    /// Set the cubemap texture to render. Call this with a texture ID obtained from TextureLoader::load_cubemap().
+    /// Set the cubemap texture to render
     void set_cubemap(uint texture_id);
-    /// Returns true if a cubemap texture has been loaded.
     [[nodiscard]] bool is_loaded() const;
-    /// Render the skybox using the provided view and projection matrices, and gamma value.
     void render(const glm::mat4& view_matrix, const glm::mat4& projection_matrix, float gamma);
-    /// Reload shaders from disk (for hot-reloading).
     bool refresh_shaders();
 };
 
-#endif //SKYBOX_RENDERER_H
+#endif
