@@ -42,32 +42,41 @@ layout (std140) uniform DirectionalLightArray {
 };
 #endif
 
+// Parallax mapping function adapted from learnopengl.com, with some adjustments to the layer count and depth offset.
 vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
-{ 
-    // number of depth layers
+{
     const float minLayers = 8.0;
-    const float maxLayers = 80.0;
-    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));      // calculate the size of each layer
+    const float maxLayers = 120.0;
+    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));
+
     float layerDepth = 1.0 / numLayers;
-    // depth of current layer
     float currentLayerDepth = 0.0;
-    // the amount to shift the texture coordinates per layer (from vector P)
-    vec2 P = viewDir.xy * -depth; 
+
+    vec2 P = viewDir.xy * depth;
     vec2 deltaTexCoords = P / numLayers;
-    vec2  currentTexCoords     = texCoords;
-    float currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;
-    
+    vec2  currentTexCoords = texCoords;
+    float currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
+
+    // Step through layers along the view direction until the sampled depth
+    // exceeds the current layer depth, finding the intersection.
     while(currentLayerDepth < currentDepthMapValue)
     {
-        // shift texture coordinates along direction of P
         currentTexCoords -= deltaTexCoords;
-        // get depthmap value at current texture coordinates
-        currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;  
-        // get depth of next layer
-        currentLayerDepth += layerDepth;  
+        currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
+        currentLayerDepth += layerDepth;
     }
 
-    return currentTexCoords;
+    // Occlusion interpolation: blend between the two layers straddling the
+    // intersection point for a smoother result without hard layer transitions.
+    vec2 prevTexCoords = currentTexCoords + deltaTexCoords;
+
+    float afterDepth = currentDepthMapValue - currentLayerDepth;
+    float beforeDepth = 1.0 - texture(depth_map_texture, prevTexCoords).r - currentLayerDepth + layerDepth;
+
+    float weight = afterDepth / (afterDepth - beforeDepth);
+    vec2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
+
+    return finalTexCoords;
 }
 
 void main() {
