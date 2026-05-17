@@ -52,17 +52,17 @@ vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
     // depth of current layer
     float currentLayerDepth = 0.0;
     // the amount to shift the texture coordinates per layer (from vector P)
-    vec2 P = viewDir.xy * -depth; 
+    vec2 P = viewDir.xy * depth;
     vec2 deltaTexCoords = P / numLayers;
     vec2  currentTexCoords     = texCoords;
-    float currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;
-    
+    float currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
+
     while(currentLayerDepth < currentDepthMapValue)
     {
         // shift texture coordinates along direction of P
         currentTexCoords -= deltaTexCoords;
         // get depthmap value at current texture coordinates
-        currentDepthMapValue = texture(depth_map_texture, currentTexCoords).r;  
+        currentDepthMapValue = 1.0 - texture(depth_map_texture, currentTexCoords).r;
         // get depth of next layer
         currentLayerDepth += layerDepth;  
     }
