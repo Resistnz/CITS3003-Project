@@ -107,7 +107,7 @@
                 0.0
             ],
             "position": [
-                -5.050000190734863,
+                -4.75,
                 1.2699999809265137,
                 0.0
             ],
@@ -148,6 +148,78 @@
         },
         "specular_map_texture": {
             "filename": "church_bricks_03_rough_4k.jpg",
+            "is_flipped": true,
+            "is_srgb": false
+        }
+    },
+    {
+        "animation_parameters": {
+            "animation_id": 0,
+            "animation_time_seconds": 14.966899099999864,
+            "loop": true,
+            "paused": false,
+            "speed": 1.0
+        },
+        "depth_map_texture": {
+            "filename": "[BLACK]",
+            "is_flipped": false,
+            "is_srgb": false
+        },
+        "diffuse_texture": {
+            "filename": "Ch17_1001_Diffuse.png",
+            "is_flipped": true,
+            "is_srgb": true
+        },
+        "enabled": true,
+        "label": "Animated Entity",
+        "local_transform": {
+            "euler_rotation": [
+                4.71238899230957,
+                0.0,
+                4.991641521453857
+            ],
+            "position": [
+                0.0,
+                0.10000000149011612,
+                2.619999885559082
+            ],
+            "scale": [
+                0.010999999940395355,
+                0.010999999940395355,
+                0.010999999940395355
+            ]
+        },
+        "material": {
+            "ambient_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shininess": 512.0,
+            "specular_tint": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "uv_scale": 1.0
+        },
+        "model": "dancing pete.x",
+        "name": "pete",
+        "normal_map_texture": {
+            "filename": "Ch17_1001_Normal.png",
+            "is_flipped": true,
+            "is_srgb": false
+        },
+        "specular_map_texture": {
+            "filename": "Ch17_1001_Glossiness.png",
             "is_flipped": true,
             "is_srgb": false
         }
