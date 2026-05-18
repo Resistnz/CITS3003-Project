@@ -50,6 +50,8 @@ layout (std140) uniform DirectionalLightArray {
 // Layer count scales with view angle and uses a custom depth scale uniform.
 vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir)
 {
+    if (depth < 0.001) return texCoords;
+
     const float minLayers = 8.0;
     const float maxLayers = 80.0;
     float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));
