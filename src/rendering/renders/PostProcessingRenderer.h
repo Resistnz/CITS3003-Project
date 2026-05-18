@@ -26,7 +26,6 @@ struct PostProcessSettings {
 
 class PostProcessingRenderer {
     class CompositeShader : public ShaderInterface {
-        // Toggles
         int enable_vignette_loc{};
         int enable_color_grading_loc{};
         int enable_film_grain_loc{};
@@ -42,7 +41,7 @@ class PostProcessingRenderer {
 
         // Film Grain
         int film_grain_strength_loc{};
-        int time_loc{}; // For animating grain
+        int time_loc{};
 
     public:
         CompositeShader();

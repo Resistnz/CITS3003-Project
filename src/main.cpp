@@ -67,17 +67,13 @@ int main() {
         scene_manager.switch_scene(editor_scene, scene_context);
 
         // Skybox!!!
-        try {
-            auto cubemap_id = texture_loader.load_cubemap({
-                "skybox/nyc_faces_l5/face_r.jpg",  "skybox/nyc_faces_l5/face_l.jpg",
-                "skybox/nyc_faces_l5/face_u.jpg",  "skybox/nyc_faces_l5/face_d.jpg",
-                "skybox/nyc_faces_l5/face_f.jpg",  "skybox/nyc_faces_l5/face_b.jpg"
-            });
-            master_renderer.get_skybox_renderer().set_cubemap(cubemap_id);
-        } catch (const std::exception& e) {
-            std::cerr << "Failed to load skybox cubemap: " << e.what() << std::endl;
-            std::cerr << "Skybox will not be rendered. Place 6 face images in res/textures/skybox/" << std::endl;
-        }
+        auto cubemap_id = texture_loader.load_cubemap({
+            "skybox/nyc_faces_l5/face_r.jpg",  "skybox/nyc_faces_l5/face_l.jpg",
+            "skybox/nyc_faces_l5/face_u.jpg",  "skybox/nyc_faces_l5/face_d.jpg",
+            "skybox/nyc_faces_l5/face_f.jpg",  "skybox/nyc_faces_l5/face_b.jpg"
+        });
+        master_renderer.get_skybox_renderer().set_cubemap(cubemap_id);
+
         // The game/render loop that runs until you close the program
         while (!window.should_close()) {
             // Process window/key/mouse events that have happened since the last loop

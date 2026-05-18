@@ -3,6 +3,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 // Cube vertex positions for a unit cube centered at the origin
+// Adapted from https://learnopengl.com/Advanced-OpenGL/Cubemaps
 static const float skybox_vertices[] = {
     // Back face
     -1.0f,  1.0f, -1.0f,
@@ -99,7 +100,7 @@ SkyboxRenderer::~SkyboxRenderer() {
 }
 
 void SkyboxRenderer::set_cubemap(uint texture_id) {
-    // If we previously owned a cubemap, delete it
+    // If we previously owned a cubemap get rid of it
     if (has_cubemap) {
         glDeleteTextures(1, &cubemap_texture);
     }

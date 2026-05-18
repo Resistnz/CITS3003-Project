@@ -7,6 +7,7 @@
 #include "rendering/renders/shaders/ShaderInterface.h"
 
 // A renderer for drawing a cubemap skybox behind all the scene
+// Adapted from https://learnopengl.com/Advanced-OpenGL/Cubemaps
 class SkyboxRenderer {
     class SkyboxShader : public ShaderInterface {
         int view_matrix_location{};
